@@ -7,9 +7,7 @@
 
     <div class="hero-blob blob-2"></div>
 
-    <div
-        class="row align-items-center gy-5"
-    >
+    <div class="row align-items-center gy-5">
 
         <!-- LEFT -->
 
@@ -66,7 +64,7 @@
 
             <!-- MINI STATS -->
 
-            <div class="row mt-5">
+            <div class="row mt-5 g-4">
 
                 <div class="col-6">
 
@@ -75,9 +73,12 @@
                         style="padding:18px;"
                     >
 
-                        <h2 style="color:#576A8F;">
+                        <h2
+                            id="studentCounter"
+                            style="color:#576A8F;"
+                        >
 
-                            500+
+                            {{ total_students }}
 
                         </h2>
 
@@ -154,9 +155,11 @@
 
                     </strong>
 
-                    Mayoritas siswa lebih mudah
-                    memahami informasi melalui
-                    visualisasi dan praktik.
+                    <p class="mb-0 mt-2">
+
+                        {{ insight_text }}
+
+                    </p>
 
                 </div>
 
@@ -171,38 +174,116 @@
 <script>
 
 const heroCtx =
-document.getElementById('heroChart');
+document.getElementById(
+    "heroChart"
+);
 
 new Chart(heroCtx, {
 
-    type: 'doughnut',
+    type: "doughnut",
 
     data: {
 
         labels: [
-            'Visual',
-            'Auditori',
-            'Kinestetik'
+
+            "Visual",
+
+            "Auditori",
+
+            "Kinestetik"
+
         ],
 
         datasets: [{
 
-            data: [46, 28, 26],
+            data: [
+
+                Number("{{ visual_count }}"),
+
+                Number("{{ auditory_count }}"),
+
+                Number("{{ kinesthetic_count }}")
+
+            ],
 
             backgroundColor: [
 
-                '#576A8F',
+                "#576A8F",
 
-                '#B7BDF7',
+                "#B7BDF7",
 
-                '#FF7444'
+                "#FF7444"
 
-            ]
+            ],
+
+            borderWidth: 0
 
         }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        maintainAspectRatio: true,
+
+        plugins: {
+
+            legend: {
+
+                position: "bottom"
+
+            }
+
+        }
 
     }
 
 });
+
+</script>
+
+<script>
+
+const counter =
+document.getElementById(
+    "studentCounter"
+);
+
+const target =
+Number("{{ total_students }}");
+
+let count = 0;
+
+const speed = 30;
+
+const updateCounter = () => {
+
+    const increment =
+    Math.ceil(target / 50);
+
+    if(count < target) {
+
+        count += increment;
+
+        if(count > target) {
+
+            count = target;
+
+        }
+
+        counter.innerText = count;
+
+        setTimeout(
+            updateCounter,
+            speed
+        );
+
+    }
+
+};
+
+updateCounter();
 
 </script>

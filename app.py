@@ -11,7 +11,10 @@ from questions import questions
 from rules import calculate_result
 
 from models import db, Result
-from recommendations import recommendations
+from recommendations import (
+    recommendations,
+    get_recommendations
+)
 from explanations import generate_explanation
 
 import os
@@ -51,12 +54,50 @@ with app.app_context():
 @app.route('/')
 def index():
 
+    total_students = Result.query.count()
+
+    visual_count = Result.query.filter_by(
+        dominant='visual'
+    ).count()
+
+    auditory_count = Result.query.filter_by(
+        dominant='auditory'
+    ).count()
+
+    kinesthetic_count = Result.query.filter_by(
+        dominant='kinesthetic'
+    ).count()
+
+    dominant_data = {
+
+        "visual": visual_count,
+
+        "auditory": auditory_count,
+
+        "kinesthetic": kinesthetic_count
+
+    }
+
+    most_dominant = max(
+        dominant_data,
+        key=dominant_data.get
+    )
+
+    insight_text = f"""
+    Mayoritas siswa memiliki
+    kecenderungan gaya belajar
+    {most_dominant}.
+    """
+
     return render_template(
 
         'index.html',
-
-        questions=questions
-
+        questions=questions,
+        total_students=total_students,
+        visual_count=visual_count,
+        auditory_count=auditory_count,
+        kinesthetic_count=kinesthetic_count,
+        insight_text=insight_text
     )
 
 # HALAMAN START
@@ -93,18 +134,33 @@ def result():
         questions,
         request.form
     )
+
     explanation = generate_explanation(
-    percentages
+        percentages
+    )
+
+    recommendation_result = (
+        get_recommendations(
+            dominant,
+            percentages
+        )
     )
 
     # SIMPAN KE DATABASE
     new_result = Result(
+
         name=session['name'],
+
         student_class=session['student_class'],
+
         gender=session['gender'],
+
         visual=percentages['visual'],
+
         auditory=percentages['auditory'],
+
         kinesthetic=percentages['kinesthetic'],
+
         dominant=dominant
 
     )
@@ -114,14 +170,25 @@ def result():
     db.session.commit()
 
     return render_template(
+
         'result.html',
+
         dominant=dominant,
+
         percentages=percentages,
-        recommendations=recommendations[dominant],
+
+        recommendations=
+        recommendation_result,
+
         explanation=explanation,
+
         name=session['name'],
-        student_class=session['student_class'],
+
+        student_class=
+        session['student_class'],
+
         gender=session['gender']
+
     )
 
 @app.route('/submit_quiz', methods=['POST'])
@@ -135,6 +202,12 @@ def submit_quiz():
     )
     explanation = generate_explanation(
     percentages
+    )
+    recommendation_result = (
+        get_recommendations(
+            dominant,
+            percentages
+        )
     )
 
     new_result = Result(
@@ -166,7 +239,7 @@ def submit_quiz():
         "percentages": percentages,
 
         "recommendations":
-        recommendations[dominant],
+        recommendation_result,
 
         "name": answers['name'],
 

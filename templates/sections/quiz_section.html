@@ -290,6 +290,46 @@ function showResult(data) {
     .innerText =
     data.dominant;
 
+    const dominantCard =
+document.getElementById(
+    "dominantCard"
+);
+
+if(data.dominant === "visual") {
+
+    dominantCard.style.background =
+    "#dbeafe";
+
+}
+
+else if(data.dominant === "auditory") {
+
+    dominantCard.style.background =
+    "#ffedd5";
+
+}
+
+else {
+
+    dominantCard.style.background =
+    "#dcfce7";
+
+}
+
+document.getElementById(
+    "visualPercent"
+).innerText =
+data.percentages.visual + "%";
+
+document.getElementById(
+    "auditoryPercent"
+).innerText =
+data.percentages.auditory + "%";
+
+document.getElementById(
+    "kinestheticPercent"
+).innerText =
+data.percentages.kinesthetic + "%";
     // recommendations
 
     renderRecommendations(
@@ -325,21 +365,21 @@ function showResult(data) {
 
     new Chart(ctx, {
 
-        type: 'radar',
+        type: 'pie',
 
         data: {
 
             labels: [
 
                 'Visual',
+
                 'Auditori',
+
                 'Kinestetik'
 
             ],
 
             datasets: [{
-
-                label: 'Persentase',
 
                 data: [
 
@@ -351,13 +391,35 @@ function showResult(data) {
 
                 ],
 
-                backgroundColor:
-                'rgba(87,106,143,0.2)',
+                backgroundColor: [
 
-                borderColor:
-                '#576A8F'
+                    "#7c9df5",
+
+                    "#fdba74",
+
+                    "#6ee7b7"
+
+                ],
+
+                borderWidth: 0
 
             }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            plugins: {
+
+                legend: {
+
+                    position: 'bottom'
+
+                }
+
+            }
 
         }
 
