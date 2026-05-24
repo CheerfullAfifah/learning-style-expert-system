@@ -12,6 +12,7 @@ from rules import calculate_result
 
 from models import db, Result
 from recommendations import recommendations
+from explanations import generate_explanation
 
 import os
 
@@ -92,6 +93,9 @@ def result():
         questions,
         request.form
     )
+    explanation = generate_explanation(
+    percentages
+    )
 
     # SIMPAN KE DATABASE
     new_result = Result(
@@ -110,21 +114,14 @@ def result():
     db.session.commit()
 
     return render_template(
-
         'result.html',
-
         dominant=dominant,
-
         percentages=percentages,
-
         recommendations=recommendations[dominant],
-
+        explanation=explanation,
         name=session['name'],
-
         student_class=session['student_class'],
-
         gender=session['gender']
-
     )
 
 @app.route('/submit_quiz', methods=['POST'])
@@ -135,6 +132,9 @@ def submit_quiz():
     dominant, percentages = calculate_result(
         questions,
         answers
+    )
+    explanation = generate_explanation(
+    percentages
     )
 
     new_result = Result(
@@ -277,7 +277,7 @@ def dashboard():
 
         male_count=male_count,
 
-        female_count=female_count
+        female_count=female_count,
 
         insight=insight
 

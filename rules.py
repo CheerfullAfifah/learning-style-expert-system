@@ -12,24 +12,40 @@ def calculate_result(questions, answers):
 
     for q in questions:
 
-        answer = answers.get(q['id'])
+        question_id = q["id"]
 
-        if answer:
+        selected_answer = answers.get(question_id)
 
-            scores[answer] += 1
+        if selected_answer in scores:
+
+            scores[selected_answer] += 1
 
     total = sum(scores.values())
 
-    percentages = {
+    if total == 0:
 
-        key: round(
-            (value / total) * 100,
-            2
-        )
+        percentages = {
 
-        for key, value in scores.items()
+            "visual": 0,
 
-    }
+            "auditory": 0,
+
+            "kinesthetic": 0
+
+        }
+
+    else:
+
+        percentages = {
+
+            key: round(
+                (value / total) * 100,
+                2
+            )
+
+            for key, value in scores.items()
+
+        }
 
     dominant = max(
         scores,

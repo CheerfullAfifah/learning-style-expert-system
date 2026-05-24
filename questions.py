@@ -1,303 +1,308 @@
+import random
+
 questions = [
 
     {
         "id": "q1",
-        "question": "Saat guru menjelaskan pelajaran baru, kamu lebih suka...",
+        "question": "Ketika guru menjelaskan materi baru, hal yang paling membantumu memahami pelajaran adalah...",
         "options": [
-            {"text": "Melihat gambar atau video", "type": "visual"},
-            {"text": "Mendengarkan penjelasan guru", "type": "auditory"},
-            {"text": "Mencoba langsung", "type": "kinesthetic"}
+            {"text": "melihat gambar, diagram, atau video", "type": "visual"},
+            {"text": "mendengarkan penjelasan guru", "type": "auditory"},
+            {"text": "mencoba langsung melalui praktik", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q2",
-        "question": "Saat belajar di rumah, kamu biasanya...",
+        "question": "Saat belajar di rumah, kamu biasanya lebih nyaman dengan cara...",
         "options": [
-            {"text": "Membuat catatan warna-warni", "type": "visual"},
-            {"text": "Belajar sambil berbicara", "type": "auditory"},
-            {"text": "Belajar sambil bergerak", "type": "kinesthetic"}
+            {"text": "membuat catatan berwarna atau mind map", "type": "visual"},
+            {"text": "mengulang materi dengan suara", "type": "auditory"},
+            {"text": "belajar sambil bergerak", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q3",
-        "question": "Aktivitas sekolah yang paling kamu sukai adalah...",
+        "question": "Ketika menghafal pelajaran, kamu lebih mudah mengingat...",
         "options": [
-            {"text": "Membuat poster atau desain", "type": "visual"},
-            {"text": "Presentasi atau diskusi", "type": "auditory"},
-            {"text": "Praktik atau eksperimen", "type": "kinesthetic"}
+            {"text": "bentuk tulisan, warna, atau gambar", "type": "visual"},
+            {"text": "suara atau penjelasan yang didengar", "type": "auditory"},
+            {"text": "hal yang pernah dipraktikkan", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q4",
-        "question": "Jika ada tugas kelompok, kamu lebih memilih...",
+        "question": "Saat guru memberikan tugas kelompok, kamu lebih tertarik untuk...",
         "options": [
-            {"text": "Membuat desain atau slide", "type": "visual"},
-            {"text": "Menjelaskan materi", "type": "auditory"},
-            {"text": "Membuat praktik atau demo", "type": "kinesthetic"}
+            {"text": "membuat desain atau slide presentasi", "type": "visual"},
+            {"text": "menjelaskan materi kepada kelompok", "type": "auditory"},
+            {"text": "menyiapkan demonstrasi atau praktik", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q5",
-        "question": "Saat mencoba memahami sesuatu, kamu lebih mudah jika...",
+        "question": "Saat mempelajari hal baru, kamu biasanya lebih suka...",
         "options": [
-            {"text": "Melihat contoh gambar", "type": "visual"},
-            {"text": "Mendengar penjelasan", "type": "auditory"},
-            {"text": "Mencobanya sendiri", "type": "kinesthetic"}
+            {"text": "melihat contoh visual terlebih dahulu", "type": "visual"},
+            {"text": "mendengar penjelasan terlebih dahulu", "type": "auditory"},
+            {"text": "langsung mencoba sendiri", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q6",
-        "question": "Di kelas, kamu biasanya paling fokus ketika...",
+        "question": "Ketika belajar di kelas, kamu paling fokus jika...",
         "options": [
-            {"text": "Guru menampilkan video atau gambar", "type": "visual"},
-            {"text": "Guru menjelaskan dengan menarik", "type": "auditory"},
-            {"text": "Ada aktivitas praktik", "type": "kinesthetic"}
+            {"text": "guru menggunakan gambar atau video", "type": "visual"},
+            {"text": "guru menjelaskan dengan menarik", "type": "auditory"},
+            {"text": "ada aktivitas praktik", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q7",
-        "question": "Saat menghafal materi, kamu lebih sering...",
+        "question": "Saat membaca buku pelajaran, kamu lebih suka jika...",
         "options": [
-            {"text": "Mengingat bentuk tulisan", "type": "visual"},
-            {"text": "Mengulang dengan suara", "type": "auditory"},
-            {"text": "Belajar sambil bergerak", "type": "kinesthetic"}
+            {"text": "banyak gambar dan warna menarik", "type": "visual"},
+            {"text": "dibaca sambil bersuara pelan", "type": "auditory"},
+            {"text": "disertai aktivitas praktik", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q8",
-        "question": "Saat menggunakan HP untuk belajar, kamu lebih suka...",
+        "question": "Ketika suasana kelas ramai, kamu biasanya tetap bisa belajar jika...",
         "options": [
-            {"text": "Menonton video edukasi", "type": "visual"},
-            {"text": "Mendengarkan podcast atau audio", "type": "auditory"},
-            {"text": "Mengikuti simulasi interaktif", "type": "kinesthetic"}
+            {"text": "masih bisa melihat materi dengan jelas", "type": "visual"},
+            {"text": "masih bisa mendengar penjelasan", "type": "auditory"},
+            {"text": "tetap melakukan aktivitas belajar", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q9",
-        "question": "Kegiatan yang paling membuatmu semangat adalah...",
+        "question": "Saat menggunakan HP untuk belajar, kamu paling sering...",
         "options": [
-            {"text": "Menggambar atau membuat desain", "type": "visual"},
-            {"text": "Ngobrol atau diskusi", "type": "auditory"},
-            {"text": "Olahraga atau praktik langsung", "type": "kinesthetic"}
+            {"text": "menonton video pembelajaran", "type": "visual"},
+            {"text": "mendengarkan podcast atau audio", "type": "auditory"},
+            {"text": "mengikuti simulasi interaktif", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q10",
-        "question": "Saat membaca buku pelajaran, kamu lebih suka...",
+        "question": "Jika guru memberi instruksi, kamu lebih cepat memahami ketika...",
         "options": [
-            {"text": "Buku bergambar dan berwarna", "type": "visual"},
-            {"text": "Membaca sambil bersuara", "type": "auditory"},
-            {"text": "Belajar sambil melakukan sesuatu", "type": "kinesthetic"}
+            {"text": "instruksi ditulis atau diperlihatkan", "type": "visual"},
+            {"text": "instruksi dijelaskan langsung", "type": "auditory"},
+            {"text": "instruksi dicontohkan langsung", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q11",
-        "question": "Jika guru memberi tugas bebas, kamu lebih memilih...",
+        "question": "Saat belajar bersama teman, kamu lebih nyaman jika...",
         "options": [
-            {"text": "Membuat infografis", "type": "visual"},
-            {"text": "Membuat presentasi lisan", "type": "auditory"},
-            {"text": "Membuat proyek praktik", "type": "kinesthetic"}
+            {"text": "ada catatan atau gambar yang bisa dilihat bersama", "type": "visual"},
+            {"text": "belajar sambil berdiskusi", "type": "auditory"},
+            {"text": "belajar sambil praktik", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q12",
-        "question": "Ketika sedang bosan belajar, kamu biasanya...",
+        "question": "Hal yang paling mudah kamu ingat setelah belajar biasanya adalah...",
         "options": [
-            {"text": "Mencari video menarik", "type": "visual"},
-            {"text": "Mengobrol dengan teman", "type": "auditory"},
-            {"text": "Berjalan atau bergerak", "type": "kinesthetic"}
+            {"text": "apa yang kamu lihat", "type": "visual"},
+            {"text": "apa yang kamu dengar", "type": "auditory"},
+            {"text": "apa yang kamu lakukan", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q13",
-        "question": "Saat belajar pelajaran baru, kamu paling mudah memahami melalui...",
+        "question": "Ketika guru menjelaskan terlalu lama, kamu biasanya...",
         "options": [
-            {"text": "Diagram dan gambar", "type": "visual"},
-            {"text": "Penjelasan guru", "type": "auditory"},
-            {"text": "Percobaan langsung", "type": "kinesthetic"}
+            {"text": "mulai mencoret-coret catatan", "type": "visual"},
+            {"text": "masih mendengarkan penjelasan", "type": "auditory"},
+            {"text": "mulai ingin bergerak", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q14",
-        "question": "Jika diminta menjelaskan sesuatu, kamu lebih suka...",
+        "question": "Saat diminta menjelaskan sesuatu kepada teman, kamu lebih sering...",
         "options": [
-            {"text": "Menggambar penjelasan", "type": "visual"},
-            {"text": "Menjelaskan dengan bicara", "type": "auditory"},
-            {"text": "Menunjukkan langsung", "type": "kinesthetic"}
+            {"text": "menggunakan gambar atau tulisan", "type": "visual"},
+            {"text": "menjelaskan dengan berbicara", "type": "auditory"},
+            {"text": "mencontohkan secara langsung", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q15",
-        "question": "Saat guru menjelaskan terlalu lama, kamu biasanya...",
+        "question": "Ketika melihat informasi baru, perhatianmu biasanya tertuju pada...",
         "options": [
-            {"text": "Mencoret-coret catatan", "type": "visual"},
-            {"text": "Masih mendengarkan", "type": "auditory"},
-            {"text": "Mulai gelisah ingin bergerak", "type": "kinesthetic"}
+            {"text": "warna, bentuk, atau tampilan visual", "type": "visual"},
+            {"text": "cara penyampaian penjelasan", "type": "auditory"},
+            {"text": "aktivitas yang bisa dilakukan", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q16",
-        "question": "Ketika melihat informasi baru, yang paling menarik perhatianmu adalah...",
+        "question": "Saat sedang santai, aktivitas yang paling kamu sukai adalah...",
         "options": [
-            {"text": "Warna dan tampilan", "type": "visual"},
-            {"text": "Cara orang menjelaskan", "type": "auditory"},
-            {"text": "Aktivitas yang bisa dilakukan", "type": "kinesthetic"}
+            {"text": "menonton video atau melihat gambar", "type": "visual"},
+            {"text": "mendengarkan musik atau ngobrol", "type": "auditory"},
+            {"text": "melakukan aktivitas fisik", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q17",
-        "question": "Saat bermain game edukasi, kamu paling suka...",
+        "question": "Jika ada alat peraga di kelas, kamu biasanya lebih suka...",
         "options": [
-            {"text": "Tampilan visual game", "type": "visual"},
-            {"text": "Suara dan dialog game", "type": "auditory"},
-            {"text": "Gerakan dan aksi game", "type": "kinesthetic"}
+            {"text": "memperhatikan bentuk dan tampilannya", "type": "visual"},
+            {"text": "mendengarkan penjelasannya", "type": "auditory"},
+            {"text": "mencobanya secara langsung", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q18",
-        "question": "Jika ada alat peraga di kelas, kamu biasanya...",
+        "question": "Saat mengerjakan tugas sulit, kamu biasanya...",
         "options": [
-            {"text": "Memperhatikan bentuk dan warnanya", "type": "visual"},
-            {"text": "Mendengarkan penjelasannya", "type": "auditory"},
-            {"text": "Ingin mencobanya langsung", "type": "kinesthetic"}
+            {"text": "mencari contoh visual", "type": "visual"},
+            {"text": "bertanya atau berdiskusi", "type": "auditory"},
+            {"text": "mencoba sendiri berkali-kali", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q19",
-        "question": "Saat belajar bersama teman, kamu lebih nyaman...",
+        "question": "Saat mengikuti pembelajaran online, kamu lebih nyaman jika...",
         "options": [
-            {"text": "Melihat catatan bersama", "type": "visual"},
-            {"text": "Diskusi dan ngobrol", "type": "auditory"},
-            {"text": "Belajar sambil praktik", "type": "kinesthetic"}
+            {"text": "materinya penuh visual dan animasi", "type": "visual"},
+            {"text": "penjelasan suara terdengar jelas", "type": "auditory"},
+            {"text": "ada tugas praktik atau interaksi", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q20",
-        "question": "Saat mengingat pelajaran, kamu lebih sering mengingat...",
+        "question": "Saat bermain game edukasi, bagian yang paling kamu sukai adalah...",
         "options": [
-            {"text": "Apa yang kamu lihat", "type": "visual"},
-            {"text": "Apa yang kamu dengar", "type": "auditory"},
-            {"text": "Apa yang kamu lakukan", "type": "kinesthetic"}
+            {"text": "tampilan visual game", "type": "visual"},
+            {"text": "suara dan dialog game", "type": "auditory"},
+            {"text": "gerakan dan aksi dalam game", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q21",
-        "question": "Pelajaran yang paling kamu sukai biasanya yang...",
+        "question": "Kegiatan sekolah yang paling membuatmu semangat biasanya adalah...",
         "options": [
-            {"text": "Banyak gambar dan video", "type": "visual"},
-            {"text": "Banyak diskusi", "type": "auditory"},
-            {"text": "Banyak praktik", "type": "kinesthetic"}
+            {"text": "yang memiliki tampilan menarik", "type": "visual"},
+            {"text": "yang banyak diskusi dan komunikasi", "type": "auditory"},
+            {"text": "yang melibatkan praktik langsung", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q22",
-        "question": "Saat guru memberi instruksi, kamu lebih mudah memahami jika...",
+        "question": "Saat mempelajari materi baru, kamu lebih mudah memahami jika...",
         "options": [
-            {"text": "Ditulis di papan", "type": "visual"},
-            {"text": "Dijelaskan langsung", "type": "auditory"},
-            {"text": "Dicontohkan langsung", "type": "kinesthetic"}
+            {"text": "ada diagram atau ilustrasi", "type": "visual"},
+            {"text": "ada penjelasan verbal yang jelas", "type": "auditory"},
+            {"text": "ada percobaan atau simulasi", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q23",
-        "question": "Saat mengikuti pelajaran online, kamu lebih suka...",
+        "question": "Ketika belajar untuk ujian, kamu lebih sering...",
         "options": [
-            {"text": "Video dan animasi", "type": "visual"},
-            {"text": "Penjelasan suara yang jelas", "type": "auditory"},
-            {"text": "Tugas praktik", "type": "kinesthetic"}
+            {"text": "membaca ulang catatan atau rangkuman", "type": "visual"},
+            {"text": "mengulang materi dengan suara", "type": "auditory"},
+            {"text": "belajar sambil bergerak", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q24",
-        "question": "Ketika mempelajari hal baru, kamu biasanya...",
+        "question": "Jika diminta membuat suatu karya, kamu lebih suka...",
         "options": [
-            {"text": "Melihat contoh terlebih dahulu", "type": "visual"},
-            {"text": "Mendengar penjelasan dulu", "type": "auditory"},
-            {"text": "Langsung mencoba", "type": "kinesthetic"}
+            {"text": "mendesain tampilan yang menarik", "type": "visual"},
+            {"text": "menjelaskan ide kepada orang lain", "type": "auditory"},
+            {"text": "membuat model atau praktik langsung", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q25",
-        "question": "Saat sedang santai, kamu lebih suka...",
+        "question": "Saat belajar kelompok, kamu paling sering...",
         "options": [
-            {"text": "Menonton video", "type": "visual"},
-            {"text": "Mendengarkan musik", "type": "auditory"},
-            {"text": "Melakukan aktivitas fisik", "type": "kinesthetic"}
+            {"text": "menulis atau membuat rangkuman visual", "type": "visual"},
+            {"text": "berdiskusi dan bertukar pendapat", "type": "auditory"},
+            {"text": "menyiapkan aktivitas praktik", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q26",
-        "question": "Jika diminta membuat karya, kamu lebih suka...",
+        "question": "Saat guru memberikan contoh materi, kamu lebih mudah memahami jika...",
         "options": [
-            {"text": "Mendesain sesuatu", "type": "visual"},
-            {"text": "Menjelaskan ide", "type": "auditory"},
-            {"text": "Membuat model langsung", "type": "kinesthetic"}
+            {"text": "contohnya berupa gambar atau ilustrasi", "type": "visual"},
+            {"text": "contohnya dijelaskan secara lisan", "type": "auditory"},
+            {"text": "contohnya dipraktikkan langsung", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q27",
-        "question": "Saat mengerjakan tugas sulit, kamu biasanya...",
+        "question": "Ketika belajar sesuatu yang baru, langkah pertama yang biasanya kamu lakukan adalah...",
         "options": [
-            {"text": "Mencari contoh visual", "type": "visual"},
-            {"text": "Bertanya kepada orang lain", "type": "auditory"},
-            {"text": "Mencoba sendiri berkali-kali", "type": "kinesthetic"}
+            {"text": "melihat contoh atau tampilan visual", "type": "visual"},
+            {"text": "mendengarkan penjelasan terlebih dahulu", "type": "auditory"},
+            {"text": "langsung mencoba sendiri", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q28",
-        "question": "Ketika belajar kelompok, kamu paling sering...",
+        "question": "Saat suasana kelas mulai membosankan, kamu biasanya...",
         "options": [
-            {"text": "Menulis atau menggambar", "type": "visual"},
-            {"text": "Berbicara dan berdiskusi", "type": "auditory"},
-            {"text": "Menyiapkan praktik", "type": "kinesthetic"}
+            {"text": "melihat-lihat catatan atau gambar", "type": "visual"},
+            {"text": "mengobrol dengan teman", "type": "auditory"},
+            {"text": "bergerak atau memainkan sesuatu", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q29",
-        "question": "Saat guru memberikan contoh, kamu lebih suka...",
+        "question": "Saat mengikuti presentasi di kelas, bagian yang paling membantumu memahami materi adalah...",
         "options": [
-            {"text": "Contoh berupa gambar", "type": "visual"},
-            {"text": "Contoh dijelaskan", "type": "auditory"},
-            {"text": "Contoh dipraktikkan", "type": "kinesthetic"}
+            {"text": "slide dan visual presentasi", "type": "visual"},
+            {"text": "cara pembicara menjelaskan", "type": "auditory"},
+            {"text": "demonstrasi atau simulasi langsung", "type": "kinesthetic"}
         ]
     },
 
     {
         "id": "q30",
-        "question": "Menurutmu cara belajar paling menyenangkan adalah...",
+        "question": "Menurutmu, cara belajar yang paling menyenangkan adalah...",
         "options": [
-            {"text": "Belajar dengan visual menarik", "type": "visual"},
-            {"text": "Belajar sambil diskusi", "type": "auditory"},
-            {"text": "Belajar sambil praktik", "type": "kinesthetic"}
+            {"text": "belajar dengan tampilan visual menarik", "type": "visual"},
+            {"text": "belajar sambil berdiskusi", "type": "auditory"},
+            {"text": "belajar sambil praktik langsung", "type": "kinesthetic"}
         ]
     }
 
 ]
+
+for q in questions:
+    random.shuffle(q["options"])

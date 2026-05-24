@@ -50,11 +50,8 @@
 
                 <div
 
-                    class="question-slide"
-
-                    {% if loop.index != 1 %}
-                        style="display:none;"
-                    {% endif %}
+                    class="question-slide {% if loop.index == 1 %}active{% endif %}"
+                
                 >
 
                     <!-- PERTANYAAN -->
@@ -83,7 +80,8 @@
 
                             onclick="selectAnswer(
                                 '{{ q.id }}',
-                                '{{ option.type }}'
+                                '{{ option.type }}',
+                                this
                             )"
                         >
 
@@ -143,7 +141,104 @@
 
 .question-slide {
 
-    animation: fadeIn 0.4s ease;
+    opacity: 0;
+
+    transform: translateX(30px);
+
+    transition:
+        all 0.4s ease;
+
+    display: none;
+
+}
+
+.question-slide.active {
+
+    display: block;
+
+    opacity: 1;
+
+    transform: translateX(0);
+
+}
+
+.answer-card {
+
+    border-radius: 24px;
+
+    transition:
+        all 0.25s ease;
+
+    border: none;
+
+    background: white;
+
+    min-height: 90px;
+
+}
+
+.answer-card:hover {
+
+    transform:
+        translateY(-5px)
+        scale(1.01);
+
+    background: #eef2ff;
+
+}
+
+.answer-card.selected {
+
+    transform: scale(0.97);
+
+    opacity: 0.8;
+
+}
+
+.progress {
+
+    height: 14px;
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    background: #e9ecff;
+
+}
+
+.progress-bar {
+
+    transition:
+        width 0.4s ease;
+
+}
+
+@media (max-width: 768px) {
+
+    .quiz-card {
+
+        padding: 24px !important;
+
+        border-radius: 24px;
+
+    }
+
+    .question-slide h2 {
+
+        font-size: 1.3rem;
+
+        line-height: 1.6;
+
+    }
+
+    .answer-card {
+
+        min-height: 75px;
+
+        padding: 18px !important;
+
+    }
 
 }
 
@@ -194,31 +289,47 @@ function updateProgress() {
 
 updateProgress();
 
-function selectAnswer(questionId, value) {
+function selectAnswer(
+    questionId,
+    value,
+    button
+) {
 
     document.getElementById(
         'answer' + questionId
     ).value = value;
 
-    slides[current].style.display = 'none';
+    button.classList.add(
+        'selected'
+    );
 
-    current++;
+    setTimeout(() => {
 
-    if(current < slides.length) {
+        slides[current].classList.remove(
+            'active'
+        );
 
-        slides[current].style.display = 'block';
+        current++;
 
-        updateProgress();
+        if(current < slides.length) {
 
-    }
+            slides[current].classList.add(
+                'active'
+            );
 
-    else {
+            updateProgress();
 
-        document.getElementById(
-            'quizForm'
-        ).submit();
+        }
 
-    }
+        else {
+
+            document.getElementById(
+                'quizForm'
+            ).submit();
+
+        }
+
+    }, 250);
 
 }
 
