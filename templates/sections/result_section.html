@@ -1,0 +1,369 @@
+<section
+    id="result-section"
+    class="section-spacing"
+    style="display:none;"
+>
+
+    <div class="quiz-card p-5">
+
+            <div class="text-center mb-5">
+
+        <div class="result-pill">
+            Hasil Gaya Belajar
+        </div>
+
+        <p class="result-subtitle">
+            Berikut hasil identifikasi gaya belajar kamu.
+        </p>
+
+    </div>
+
+        <!-- IDENTITAS -->
+
+        <div class="result-identity-card mb-4">
+
+            <h3 class="result-section-title">
+                Identitas Siswa
+            </h3>
+
+            <div class="row mt-4">
+
+                <div class="col-md-4">
+                    <div class="result-label">Nama</div>
+                    <div
+                        class="result-value"
+                        id="resultName"
+                    ></div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="result-label">Kelas</div>
+                    <div
+                        class="result-value"
+                        id="resultClass"
+                    ></div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="result-label">Gender</div>
+                    <div
+                        class="result-value"
+                        id="resultGender"
+                    ></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- DOMINANT -->
+
+        <!-- DOMINANT -->
+
+        <div
+            id="dominantCard"
+            class="dominant-card mb-4"
+        >
+
+            <div class="row align-items-center">
+
+                <div class="col-md-5">
+
+                    <div class="dominant-title">
+                        Gaya Belajar Dominan
+                    </div>
+
+                    <div
+                        id="dominantResult"
+                        class="dominant-value"
+                    ></div>
+
+                </div>
+
+                <div class="col-md-7">
+
+                    <div id="resultExplanation"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+<div class="row g-4 mb-4">
+
+    <!-- STATISTIK -->
+
+    <div class="col-lg-6">
+
+        <div class="result-card h-100">
+
+            <h3 class="result-section-title">
+
+                Hasil Identifikasi
+
+            </h3>
+
+            <div class="mt-4">
+
+                <div class="mb-4">
+
+                    <div
+                        class="d-flex justify-content-between mb-2"
+                    >
+
+                        <span>Visual</span>
+
+                        <span id="visualCount"></span>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="visualBar"
+                            class="progress-bar"
+                            style="
+                                background:#576A8F;
+                                width:0%;
+                            "
+                        ></div>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+
+                    <div
+                        class="d-flex justify-content-between mb-2"
+                    >
+
+                        <span>Auditori</span>
+
+                        <span id="auditoryCount"></span>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="auditoryBar"
+                            class="progress-bar"
+                            style="
+                                background:#FFB347;
+                                width:0%;
+                            "
+                        ></div>
+
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <div
+                        class="d-flex justify-content-between mb-2"
+                    >
+
+                        <span>Kinestetik</span>
+
+                        <span id="kinestheticCount"></span>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="kinestheticBar"
+                            class="progress-bar"
+                            style="
+                                background:#4CAF50;
+                                width:0%;
+                            "
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CHART + ANALISIS -->
+
+    <div class="col-lg-6">
+
+        <div class="result-card h-100">
+
+            <h3 class="result-section-title">
+
+                Diagram Gaya Belajar
+
+            </h3>
+
+            <div
+                style="
+                    height:280px;
+                    position:relative;
+                "
+            >
+
+                <div
+                    style="
+                        height:300px;
+                        position:relative;
+                    "
+                >
+
+                    <canvas id="resultChart"></canvas>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h3
+                class="result-section-title mt-4"
+            >
+
+                Analisis Hasil
+
+            </h3>
+
+            <div
+                id="ruleTrace"
+                style="
+                    line-height:1.8;
+                    color:#5f5f5f;
+                "
+            ></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+        <!-- ACCORDION -->
+
+        <div class="result-card mb-4">
+
+            <h3 class="result-section-title mb-4">
+
+                Rekomendasi Pembelajaran
+
+            </h3>
+
+            <div class="accordion" id="resultAccordion">
+
+            <!-- SISWA -->
+
+            <div class="accordion-item mb-3 border-0">
+
+                <h2 class="accordion-header">
+
+                    <button
+                        class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#studentRec"
+                    >
+
+                        Rekomendasi untuk Siswa
+
+                    </button>
+
+                </h2>
+
+                <div
+                    id="studentRec"
+                    class="accordion-collapse collapse show"
+                >
+
+                    <div
+                        class="accordion-body"
+                        id="studentRecommendations"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            <!-- GURU -->
+
+            <div class="accordion-item mb-3 border-0">
+
+                <h2 class="accordion-header">
+
+                    <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#teacherRec"
+                    >
+
+                        Rekomendasi untuk Guru
+
+                    </button>
+
+                </h2>
+
+                <div
+                    id="teacherRec"
+                    class="accordion-collapse collapse"
+                >
+
+                    <div
+                        class="accordion-body"
+                        id="teacherRecommendations"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            <!-- PARENT -->
+
+            <div class="accordion-item border-0">
+
+                <h2 class="accordion-header">
+
+                    <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#parentRec"
+                    >
+
+                        Rekomendasi untuk Orang Tua
+
+                    </button>
+
+                </h2>
+
+                <div
+                    id="parentRec"
+                    class="accordion-collapse collapse"
+                >
+
+                    <div
+                        class="accordion-body"
+                        id="parentRecommendations"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
