@@ -13,26 +13,27 @@ def generate_explanation(
     )
 
     primary = sorted_scores[0][0]
-
     primary_score = sorted_scores[0][1]
 
     secondary = sorted_scores[1][0]
-
     secondary_score = sorted_scores[1][1]
 
     tertiary = sorted_scores[2][0]
-
     tertiary_score = sorted_scores[2][1]
 
     def translate(style):
 
-        if style == "visual":
-            return "Visual"
+        mapping = {
 
-        elif style == "auditory":
-            return "Auditori"
+            "visual": "Visual",
 
-        return "Kinestetik"
+            "auditory": "Auditori",
+
+            "kinesthetic": "Kinestetik"
+
+        }
+
+        return mapping[style]
 
     primary_text = translate(primary)
 
@@ -40,98 +41,45 @@ def generate_explanation(
 
     tertiary_text = translate(tertiary)
 
-    explanation = f"""
-
-    Gaya belajar dominan Anda adalah
-    {primary_text} ({primary_score}%).
-
-    """
-
     # =====================================
-    # PRIMARY DESCRIPTION
+    # RINGKASAN DOMINAN
     # =====================================
 
     if primary == "visual":
 
-        explanation += """
-
-        Anda cenderung lebih mudah memahami
-        materi melalui gambar, video,
-        warna, diagram, dan visualisasi.
-
-        """
+        summary = (
+            "Lebih efektif memahami informasi melalui "
+            "gambar, diagram, warna, dan visualisasi."
+        )
 
     elif primary == "auditory":
 
-        explanation += """
-
-        Anda cenderung lebih mudah memahami
-        materi melalui penjelasan verbal,
-        diskusi, dan aktivitas mendengarkan.
-
-        """
+        summary = (
+            "Lebih efektif memahami materi melalui "
+            "diskusi, penjelasan verbal, dan media audio."
+        )
 
     else:
 
-        explanation += """
+        summary = (
+            "Lebih efektif belajar melalui praktik, "
+            "simulasi, dan pengalaman langsung."
+        )
 
-        Anda cenderung lebih mudah memahami
-        materi melalui praktik langsung,
-        aktivitas, dan pengalaman nyata.
+    return {
 
-        """
+        "primary": primary_text,
 
-    # =====================================
-    # SECONDARY STYLE
-    # =====================================
+        "primary_score": primary_score,
 
-    explanation += f"""
+        "secondary": secondary_text,
 
-    Gaya belajar kedua Anda adalah
-    {secondary_text} ({secondary_score}%).
+        "secondary_score": secondary_score,
 
-    """
+        "tertiary": tertiary_text,
 
-    if secondary == "visual":
+        "tertiary_score": tertiary_score,
 
-        explanation += """
+        "summary": summary
 
-        Hal ini menunjukkan bahwa pendekatan
-        visual juga membantu memperkuat
-        pemahaman materi Anda.
-
-        """
-
-    elif secondary == "auditory":
-
-        explanation += """
-
-        Hal ini menunjukkan bahwa penjelasan verbal
-        dan diskusi juga membantu proses belajar Anda.
-
-        """
-
-    else:
-
-        explanation += """
-
-        Hal ini menunjukkan bahwa praktik langsung
-        dan aktivitas juga membantu memperkuat
-        pemahaman Anda.
-
-        """
-
-    # =====================================
-    # TERTIARY STYLE
-    # =====================================
-
-    explanation += f"""
-
-    Sementara itu, gaya belajar
-    {tertiary_text} ({tertiary_score}%)
-    tetap berperan sebagai pendukung
-    dalam proses belajar Anda.
-
-    """
-
-    return explanation
+    }

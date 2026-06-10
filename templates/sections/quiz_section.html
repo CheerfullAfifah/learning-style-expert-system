@@ -489,7 +489,7 @@ async function submitQuiz(){
     await response.json();
 
     console.log(data);
-    
+
     showResult(data);
 
 }
@@ -533,8 +533,31 @@ function showResult(data){
 
     document.getElementById(
         'resultExplanation'
-    ).innerHTML =
-    data.explanation.replace(/\n/g,"<br>");
+    ).innerHTML = `
+
+    <div class="result-summary">
+
+        <p>
+            ${data.explanation.summary}
+        </p>
+
+        <div class="support-style">
+
+            <strong>Gaya Pendukung:</strong>
+
+            ${data.explanation.secondary}
+            (${data.explanation.secondary_score}%)
+
+            •
+
+            ${data.explanation.tertiary}
+            (${data.explanation.tertiary_score}%)
+
+        </div>
+
+    </div>
+
+    `;
 
     document.getElementById(
         'ruleTrace'
