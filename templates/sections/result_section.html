@@ -6,72 +6,50 @@
 
     <div class="quiz-card p-5">
 
-        <div class="text-center mb-5">
+            <div class="text-center mb-5">
 
-            <h1
-                class="fw-bold"
-                style="color:#576A8F;"
-            >
-
-                Hasil Gaya Belajar
-
-            </h1>
-
-            <p class="text-muted">
-
-                Berikut hasil identifikasi
-                gaya belajar kamu.
-
-            </p>
-
+        <div class="result-pill">
+            Hasil Gaya Belajar
         </div>
+
+        <p class="result-subtitle">
+            Berikut hasil identifikasi gaya belajar kamu.
+        </p>
+
+    </div>
 
         <!-- IDENTITAS -->
 
-        <div class="analytics-card mb-4">
+        <div class="result-identity-card mb-4">
 
-            <h4 class="fw-bold mb-4">
-
+            <h3 class="result-section-title">
                 Identitas Siswa
+            </h3>
 
-            </h4>
-
-            <div class="row">
+            <div class="row mt-4">
 
                 <div class="col-md-4">
-
-                    <p>
-
-                        <strong>Nama:</strong>
-
-                        <span id="resultName"></span>
-
-                    </p>
-
+                    <div class="result-label">Nama</div>
+                    <div
+                        class="result-value"
+                        id="resultName"
+                    ></div>
                 </div>
 
                 <div class="col-md-4">
-
-                    <p>
-
-                        <strong>Kelas:</strong>
-
-                        <span id="resultClass"></span>
-
-                    </p>
-
+                    <div class="result-label">Kelas</div>
+                    <div
+                        class="result-value"
+                        id="resultClass"
+                    ></div>
                 </div>
 
                 <div class="col-md-4">
-
-                    <p>
-
-                        <strong>Gender:</strong>
-
-                        <span id="resultGender"></span>
-
-                    </p>
-
+                    <div class="result-label">Gender</div>
+                    <div
+                        class="result-value"
+                        id="resultGender"
+                    ></div>
                 </div>
 
             </div>
@@ -80,89 +58,190 @@
 
         <!-- DOMINANT -->
 
+        <!-- DOMINANT -->
+
         <div
             id="dominantCard"
-            class="analytics-card mb-4 text-center"
+            class="dominant-card mb-4"
         >
 
-            <h2
-                class="fw-bold"
-                style="color:#FF7444;"
-            >
+            <div class="row align-items-center">
 
-                Dominan:
-                <span id="dominantResult"></span>
+                <div class="col-md-5">
 
-            </h2>
+                    <div class="dominant-title">
+                        Gaya Belajar Dominan
+                    </div>
+
+                    <div
+                        id="dominantResult"
+                        class="dominant-value"
+                    ></div>
+
+                </div>
+
+                <div class="col-md-7">
+
+                    <div id="resultExplanation"></div>
+
+                </div>
+
+            </div>
 
         </div>
 
 <div class="row g-4 mb-4">
 
-    <div class="col-md-4">
+    <!-- STATISTIK -->
 
-        <div class="analytics-card text-center">
+    <div class="col-lg-6">
 
-            <h5 class="fw-bold mb-3">
+        <div class="result-card h-100">
 
-                Visual
+            <h3 class="result-section-title">
 
-            </h5>
+                Hasil Identifikasi
 
-            <h2
-                id="visualPercent"
-                style="color:#576A8F;"
-            >
+            </h3>
 
-                0%
+            <div class="mt-4">
 
-            </h2>
+                <div class="mb-4">
+
+                    <div
+                        class="d-flex justify-content-between mb-2"
+                    >
+
+                        <span>Visual</span>
+
+                        <span id="visualCount"></span>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="visualBar"
+                            class="progress-bar"
+                            style="
+                                background:#576A8F;
+                                width:0%;
+                            "
+                        ></div>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+
+                    <div
+                        class="d-flex justify-content-between mb-2"
+                    >
+
+                        <span>Auditori</span>
+
+                        <span id="auditoryCount"></span>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="auditoryBar"
+                            class="progress-bar"
+                            style="
+                                background:#FFB347;
+                                width:0%;
+                            "
+                        ></div>
+
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <div
+                        class="d-flex justify-content-between mb-2"
+                    >
+
+                        <span>Kinestetik</span>
+
+                        <span id="kinestheticCount"></span>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="kinestheticBar"
+                            class="progress-bar"
+                            style="
+                                background:#4CAF50;
+                                width:0%;
+                            "
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
-    <div class="col-md-4">
+    <!-- CHART + ANALISIS -->
 
-        <div class="analytics-card text-center">
+    <div class="col-lg-6">
 
-            <h5 class="fw-bold mb-3">
+        <div class="result-card h-100">
 
-                Auditori
+            <h3 class="result-section-title">
 
-            </h5>
+                Diagram Gaya Belajar
 
-            <h2
-                id="auditoryPercent"
-                style="color:#FF7444;"
+            </h3>
+
+            <div
+                style="
+                    height:280px;
+                    position:relative;
+                "
             >
 
-                0%
+                <div
+                    style="
+                        height:300px;
+                        position:relative;
+                    "
+                >
 
-            </h2>
+                    <canvas id="resultChart"></canvas>
 
-        </div>
+                </div>
 
-    </div>
+            </div>
 
-    <div class="col-md-4">
+            <hr>
 
-        <div class="analytics-card text-center">
-
-            <h5 class="fw-bold mb-3">
-
-                Kinestetik
-
-            </h5>
-
-            <h2
-                id="kinestheticPercent"
-                style="color:#28a745;"
+            <h3
+                class="result-section-title mt-4"
             >
 
-                0%
+                Analisis Hasil
 
-            </h2>
+            </h3>
+
+            <div
+                id="ruleTrace"
+                style="
+                    line-height:1.8;
+                    color:#5f5f5f;
+                "
+            ></div>
 
         </div>
 
@@ -170,23 +249,17 @@
 
 </div>
 
-        <!-- CHART -->
-
-        <div class="analytics-card mb-4">
-
-            <h4 class="fw-bold mb-4">
-
-                Diagram Gaya Belajar
-
-            </h4>
-
-            <canvas id="resultChart"></canvas>
-
-        </div>
-
         <!-- ACCORDION -->
 
-        <div class="accordion" id="resultAccordion">
+        <div class="result-card mb-4">
+
+            <h3 class="result-section-title mb-4">
+
+                Rekomendasi Pembelajaran
+
+            </h3>
+
+            <div class="accordion" id="resultAccordion">
 
             <!-- SISWA -->
 
@@ -290,5 +363,7 @@
         </div>
 
     </div>
+
+</div>
 
 </section>

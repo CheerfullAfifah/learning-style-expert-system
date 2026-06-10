@@ -8,7 +8,10 @@ from flask import (
 )
 
 from questions import questions
-from rules import calculate_result
+from rules import (
+    calculate_result,
+    backward_chaining
+)
 
 from models import db, Result
 from recommendations import (
@@ -130,10 +133,18 @@ def quiz():
 @app.route('/result', methods=['POST'])
 def result():
 
-    dominant, percentages = calculate_result(
+    dominant, percentages, scores = calculate_result(
         questions,
         request.form
     )
+
+    bc_result = backward_chaining(
+        scores
+    )
+
+    rule_trace = bc_result["rule_trace"]
+
+    dominant = bc_result["goal"]
 
     explanation = generate_explanation(
         percentages
@@ -196,10 +207,27 @@ def submit_quiz():
 
     answers = request.json
 
-    dominant, percentages = calculate_result(
+    print("\n===== ANSWERS =====")
+    print(answers)
+    print("===================\n")
+
+    dominant, percentages, scores = calculate_result(
         questions,
         answers
     )
+
+    bc_result = backward_chaining(
+        scores
+    )
+
+    print("\n===== BC RESULT =====")
+    print(bc_result)
+    print("=====================\n")
+
+    rule_trace = bc_result["rule_trace"]
+
+    dominant = bc_result["goal"]
+
     explanation = generate_explanation(
     percentages
     )
@@ -247,7 +275,22 @@ def submit_quiz():
         answers['student_class'],
 
         "gender":
-        answers['gender']
+        answers['gender'],
+
+        "explanation":
+        explanation,
+
+        "rule_trace":
+        rule_trace,
+
+        "visual_count":
+        bc_result["visual_count"],
+
+        "auditory_count":
+        bc_result["auditory_count"],
+
+        "kinesthetic_count":
+        bc_result["kinesthetic_count"],
 
     })
 

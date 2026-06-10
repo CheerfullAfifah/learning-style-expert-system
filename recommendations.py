@@ -4,43 +4,43 @@ recommendations = {
 
         "student": [
 
-            "Gunakan mind mapping saat belajar",
-
-            "Gunakan warna pada catatan",
-
-            "Belajar menggunakan video pembelajaran",
-
-            "Gunakan diagram atau gambar",
-
-            "Buat rangkuman visual"
+            "Gunakan mind mapping, diagram, atau warna untuk membantu memahami dan mengingat materi.",
+            
+            "Video pembelajaran dan visualisasi materi dapat membantu meningkatkan fokus belajar.",
+            
+            "Buat rangkuman visual agar materi lebih mudah dipahami dan diingat kembali.",
+            
+            "Gunakan catatan yang terstruktur dan menarik secara visual untuk membantu proses belajar mandiri.",
+            
+            "Hindari belajar dengan teks yang terlalu panjang tanpa bantuan visual pendukung.",
 
         ],
 
         "teacher": [
 
-            "Gunakan media gambar saat mengajar",
-
-            "Gunakan slide yang menarik",
-
-            "Gunakan diagram dan ilustrasi",
-
-            "Tuliskan poin penting di papan",
-
-            "Berikan video pembelajaran"
+            "Gunakan media visual seperti gambar, diagram, video, atau slide interaktif saat pembelajaran.",
+            
+            "Tuliskan poin penting secara terstruktur agar siswa lebih mudah memahami materi.",
+            
+            "Kombinasikan penjelasan dengan ilustrasi visual untuk meningkatkan fokus belajar siswa.",
+            
+            "Gunakan warna atau penekanan visual pada konsep penting agar materi lebih mudah diingat.",
+            
+            "Berikan contoh konkret dan visualisasi materi agar siswa lebih cepat memahami pembelajaran.",
 
         ],
 
         "parent": [
 
-            "Bantu anak belajar menggunakan video",
-
-            "Gunakan catatan berwarna",
-
-            "Berikan buku bergambar",
-
-            "Ajak anak membuat mind map",
-
-            "Gunakan media visual saat belajar di rumah"
+            "Berikan dukungan belajar menggunakan media visual seperti video edukasi atau buku bergambar.",
+            
+            "Bantu anak membuat rangkuman atau catatan visual agar materi lebih mudah dipahami.",
+            
+            "Ciptakan lingkungan belajar yang rapi dan nyaman agar anak lebih fokus belajar.",
+            
+            "Dukung anak menggunakan metode belajar kreatif seperti mind mapping atau flashcard.",
+            
+            "Hindari terlalu banyak instruksi verbal tanpa bantuan visual pendukung.",
 
         ]
 
@@ -50,43 +50,43 @@ recommendations = {
 
         "student": [
 
-            "Belajar dengan diskusi",
-
-            "Gunakan rekaman suara",
-
-            "Belajar sambil berbicara",
-
-            "Dengarkan penjelasan materi",
-
-            "Belajar bersama teman"
+            "Belajar melalui diskusi dan penjelasan verbal dapat membantu meningkatkan pemahaman materi.",
+            
+            "Cobalah menjelaskan kembali materi dengan berbicara agar informasi lebih mudah diingat.",
+            
+            "Gunakan rekaman suara, podcast edukasi, atau video penjelasan sebagai media belajar tambahan.",
+            
+            "Belajar bersama teman dapat membantu menjaga fokus dan memperkuat pemahaman.",
+            
+            "Diskusi aktif dan tanya jawab biasanya lebih efektif dibanding hanya membaca materi sendiri.",
 
         ],
 
         "teacher": [
 
-            "Gunakan penjelasan verbal",
-
-            "Ajak siswa berdiskusi",
-
-            "Gunakan presentasi lisan",
-
-            "Berikan kesempatan bertanya",
-
-            "Gunakan metode tanya jawab"
+            "Gunakan penjelasan verbal yang jelas dan interaktif selama pembelajaran.",
+            
+            "Berikan kesempatan siswa untuk bertanya dan berdiskusi secara aktif.",
+            
+            "Kombinasikan pembelajaran dengan presentasi, diskusi kelompok, atau tanya jawab.",
+            
+            "Hindari pembelajaran yang terlalu pasif tanpa komunikasi dua arah.",
+            
+            "Gunakan intonasi dan komunikasi aktif untuk membantu menjaga perhatian siswa."
 
         ],
 
         "parent": [
 
-            "Ajak anak berdiskusi",
-
-            "Dengarkan anak menjelaskan pelajaran",
-
-            "Gunakan audio pembelajaran",
-
-            "Bacakan materi bersama",
-
-            "Dukung anak belajar kelompok"
+            "Ajak anak berdiskusi mengenai materi yang dipelajari di sekolah.",
+            
+            "Dengarkan anak menjelaskan kembali pelajaran untuk membantu memperkuat pemahaman.",
+            
+            "Dukung anak belajar menggunakan audio pembelajaran atau video penjelasan.",
+            
+            "Berikan kesempatan anak belajar bersama teman agar proses belajar lebih nyaman.",
+            
+            "Hindari memaksa anak belajar terlalu lama secara diam tanpa interaksi.",
 
         ]
 
@@ -96,43 +96,43 @@ recommendations = {
 
         "student": [
 
-            "Belajar dengan praktik langsung",
+            "Gunakan aktivitas praktik langsung agar fokus belajar tetap terjaga.",
 
-            "Gunakan simulasi",
+            "Belajar melalui simulasi, eksperimen, atau project sederhana dapat membantu meningkatkan pemahaman materi.",
 
-            "Belajar sambil bergerak",
+            "Hindari belajar terlalu lama tanpa aktivitas karena dapat menyebabkan kehilangan fokus.",
 
-            "Lakukan eksperimen sederhana",
-
-            "Gunakan permainan edukatif"
+            "Gunakan metode belajar aktif seperti roleplay, demonstrasi, atau praktik mandiri.",
+            
+            "Belajar sambil melakukan aktivitas ringan dapat membantu menjaga konsentrasi belajar.",
 
         ],
 
         "teacher": [
 
-            "Gunakan metode praktik",
-
-            "Kurangi ceramah terlalu lama",
-
-            "Gunakan aktivitas kelas",
-
-            "Berikan simulasi",
-
-            "Gunakan pembelajaran interaktif"
+            "Berikan aktivitas praktik atau simulasi agar siswa tetap terlibat selama pembelajaran.",
+            
+            "Hindari metode ceramah terlalu lama karena siswa kinestetik cenderung cepat kehilangan fokus.",
+            
+            "Gunakan pembelajaran berbasis aktivitas, eksperimen, atau project sederhana.",
+            
+            "Berikan kesempatan siswa untuk bergerak dan berinteraksi selama proses belajar.",
+            
+            "Kombinasikan pembelajaran dengan praktik langsung agar siswa lebih mudah memahami materi.",
 
         ],
 
         "parent": [
 
-            "Ajak anak belajar sambil praktik",
-
-            "Gunakan aktivitas langsung",
-
-            "Berikan eksperimen sederhana",
-
-            "Jangan hanya fokus membaca",
-
-            "Berikan media belajar interaktif"
+            "Berikan aktivitas belajar yang melibatkan praktik langsung di rumah.",
+            
+            "Hindari memaksa anak belajar terlalu lama hanya dengan membaca atau mendengarkan.",
+            
+            "Dukung anak belajar melalui aktivitas interaktif dan pengalaman nyata.",
+            
+            "Bantu anak menjaga fokus belajar dengan selingan aktivitas ringan.",
+            
+            "Gunakan permainan edukatif atau aktivitas praktik sederhana untuk membantu proses belajar.",
 
         ]
 

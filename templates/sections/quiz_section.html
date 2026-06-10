@@ -4,368 +4,577 @@
     style="display:none;"
 >
 
-    <div class="quiz-card p-5">
+<div
+    style="
+        background:#EEF8F7;
+        border-radius:32px;
+        padding:24px 36px;
+        min-height:auto;
+    "
+>
 
-        <!-- HEADER -->
+    <div
+        style="
+            display:inline-block;
+            background:#DCE6FF;
+            color:#23468F;
+            padding:14px 26px;
+            border-radius:999px;
+            font-weight:600;
+            margin-bottom:40px;
+        "
+    >
+        Tes Gaya Belajar
+    </div>
 
-        <div class="d-flex justify-content-between mb-4">
-
-            <h4
-                class="fw-bold"
-                style="color:#576A8F;"
+    <form
+        id="quizForm"
+        action="/result"
+        method="POST"
+    >
+    <div
+                style="
+                    width:100%;
+                    height:20px;
+                    background:#E5E5E5;
+                    border-radius:20px;
+                    overflow:hidden;
+                    margin-bottom:40px;
+                "
             >
 
-                Tes Gaya Belajar
+                <div
+                    id="progressBar"
+                    style="
+                        height:100%;
+                        width:0%;
+                        background:#23468F;
+                        border-radius:20px;
+                        transition:.3s;
+                    "
+                ></div>
+            </div>
 
-            </h4>
+        {% for q in questions %}
 
-            <h5 id="questionCounter">
-
-                1/{{ questions|length }}
-
-            </h5>
-
-        </div>
-
-        <!-- PROGRESS -->
-
-        <div class="progress mb-5">
-
-            <div
-                id="progressBar"
-                class="progress-bar"
-                style="
-                    width:0%;
-                    background:#FF7444;
-                "
-            ></div>
-
-        </div>
-
-        <!-- FORM -->
-
-        <form
-            id="quizForm"
-            action="/result"
-            method="POST"
+        <div
+            class="question-slide"
+            {% if loop.index != 1 %}
+            style="display:none;"
+            {% endif %}
         >
 
-            {% for q in questions %}
-
             <div
-                class="question-slide"
-
-                {% if loop.index != 1 %}
-                    style="display:none;"
-                {% endif %}
+                style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    margin-bottom:10px;
+                "
             >
 
-                <!-- QUESTION -->
-
-                <div class="text-center mb-5">
-
-                    <h2
-                        class="fw-bold"
-                        style="
-                            color:#576A8F;
-                            line-height:1.5;
-                        "
-                    >
-
-                        {{ q.question }}
-
-                    </h2>
-
-                </div>
-
-                <!-- OPTIONS -->
-
-                <div class="d-grid gap-4">
-
-                    {% for option in q.options %}
-
-                    <button
-
-                        type="button"
-
-                        class="answer-btn shadow-sm"
-
-                        onclick="selectAnswer(
-                            '{{ q.id }}',
-                            '{{ option.type }}'
-                        )"
-                    >
-
-                        {{ option.text }}
-
-                    </button>
-
-                    {% endfor %}
-
-                </div>
-
-                <!-- HIDDEN -->
-
-                <input
-                    type="hidden"
-                    name="{{ q.id }}"
-                    id="answer{{ q.id }}"
+                <h4
+                    style="
+                        color:#23468F;
+                        margin:0;
+                    "
                 >
+                    Pertanyaan
+                    <span class="current-question">
+                        {{ loop.index }}
+                    </span>
+                    dari
+                    {{ questions|length }}
+                </h4>
 
             </div>
 
-            {% endfor %}
+            <h2
+                style="
+                    color:#23468F;
+                    font-weight:700;
+                    font-size:1.25rem;
+                    line-height:1.4;
+                    margin-bottom:24px;
+                "
+            >
+                {{ q.question }}
+            </h2>
 
-        </form>
+            <div class="d-grid gap-4">
 
-    </div>
+                {% for option in q.options %}
+
+                <button
+                    type="button"
+                    class="figma-answer"
+                    data-question="{{ q.id }}"
+                    data-value="{{ option.type }}"
+                >
+
+                    {{ option.text }}
+
+                </button>
+
+                {% endfor %}
+
+            </div>
+
+            <input
+                type="hidden"
+                name="{{ q.id }}"
+                id="answer{{ q.id }}"
+            >
+
+        </div>
+
+        {% endfor %}
+
+        <div
+            class="d-flex justify-content-start mt-4"
+        >
+
+            <div
+                class="d-flex
+                gap-2
+                mt-3"
+            >
+
+                <button
+                    type="button"
+                    id="prevBtn"
+                    class="figma-nav-btn"
+                    style="display:none;"
+                >
+                    ← Sebelumnya
+                </button>
+
+                <button
+                    type="button"
+                    id="resultBtn"
+                    class="figma-next-btn"
+                    style="display:none;"
+                >
+                    Lihat Hasil →
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+<style>
+
+.figma-answer{
+
+    width:100%;
+    height:56px;
+    border:none;
+    border-radius:22px;
+    background:#FFFFFF;
+    color:#23468F;
+    font-size:1rem;
+    font-weight:600;
+
+    box-shadow:
+    0 4px 10px rgba(0,0,0,.08);
+
+    transition:.2s;
+}
+
+.figma-answer:hover{
+
+    background:#E9EEFF;
+}
+
+.figma-answer.selected{
+
+    background:#DCE6FF;
+    border:3px solid #23468F;
+}
+
+.question-slide{
+
+    min-height:260px;
+}
+
+.figma-nav-btn{
+
+    border:none;
+
+    background:white;
+
+    color:#23468F;
+
+    height:62px;
+
+    min-width:220px;
+
+    border-radius:20px;
+
+    font-size:1.3rem;
+
+    font-weight:700;
+
+    box-shadow:
+    0 4px 10px rgba(0,0,0,.08);
+}
+
+.figma-next-btn{
+
+    border:none;
+
+    background:#DCE6FF;
+
+    color:#23468F;
+
+    height:62px;
+
+    min-width:260px;
+
+    border-radius:20px;
+
+    font-size:1.3rem;
+
+    font-weight:700;
+
+    box-shadow:
+    0 5px 0 #23468F;
+}
+
+@media(max-width:992px){
+
+    .figma-next-btn,
+    .figma-nav-btn{
+
+        min-width:auto;
+        width:48%;
+    }
+}
+
+</style>
 
 </section>
 
 <script>
 
-const slides =
-document.querySelectorAll('.question-slide');
+const slides = document.querySelectorAll('.question-slide');
 
 let current = 0;
 
-function updateProgress() {
+const progressBar =
+document.getElementById('progressBar');
+
+function updateProgress(){
 
     const progress =
     ((current + 1) / slides.length) * 100;
 
     document
     .getElementById('progressBar')
-    .style.width = progress + '%';
+    .style.width =
+    progress + '%';
 
     document
-    .getElementById('questionCounter')
-    .innerText =
-    `${current + 1}/${slides.length}`;
+    .querySelectorAll('.current-question')
+    .forEach(el => {
+
+        el.innerText = current + 1;
+
+    });
+
+}
+
+function updateButtons(){
+
+    const prevBtn =
+    document.getElementById('prevBtn');
+
+    const resultBtn =
+    document.getElementById('resultBtn');
+
+    if(current === 0){
+
+        prevBtn.style.display = 'none';
+
+    }else{
+
+        prevBtn.style.display = 'block';
+
+    }
+
+    const lastAnswer =
+    document.getElementById(
+        'answer' + slides.length
+    );
+
+    if(current === slides.length - 1){
+
+        resultBtn.style.display =
+        'block';
+
+    }else{
+
+        resultBtn.style.display =
+        'none';
+
+    }
 
 }
 
 updateProgress();
+updateButtons();
 
-function selectAnswer(questionId, value) {
+document
+.querySelectorAll('.figma-answer')
+.forEach(btn => {
 
-    document
-    .getElementById(
-        'answer' + questionId
-    ).value = value;
+    btn.addEventListener('click', function(){
 
-    slides[current].style.display = 'none';
+        const questionId =
+        this.dataset.question;
 
-    current++;
+        const value =
+        this.dataset.value;
 
-    if(current < slides.length) {
+        const parent =
+        this.closest('.question-slide');
 
-        slides[current].style.display = 'block';
+        parent
+        .querySelectorAll('.figma-answer')
+        .forEach(b => {
+
+            b.classList.remove('selected');
+
+        });
+
+        this.classList.add('selected');
+
+        document.getElementById(
+            'answer' + questionId
+        ).value = value;
+
+        setTimeout(() => {
+
+            if(current === slides.length - 1){
+
+                this.classList.add('selected');
+
+                updateButtons();
+
+                return;
+            }
+
+            slides[current].style.display =
+            'none';
+
+            current++;
+
+            slides[current].style.display =
+            'block';
+
+            updateProgress();
+
+            updateButtons();
+
+        }, 250);
+
+                });
+
+            });
+
+document
+.getElementById('prevBtn')
+.addEventListener('click', () => {
+
+    if(current > 0){
+
+        slides[current].style.display =
+        'none';
+
+        current--;
+
+        slides[current].style.display =
+        'block';
 
         updateProgress();
+        updateButtons();
 
     }
 
-    else {
+});
 
-        // append identity
+document
+.getElementById('resultBtn')
+.addEventListener('click', () => {
 
-        const form =
-        document.getElementById('quizForm');
+    const form =
+    document.getElementById('quizForm');
 
-        const nameInput =
-        document.createElement('input');
+    const nameInput =
+    document.createElement('input');
 
-        nameInput.type = 'hidden';
+    nameInput.type = 'hidden';
+    nameInput.name = 'name';
+    nameInput.value =
+    sessionStorage.getItem('name');
 
-        nameInput.name = 'name';
+    form.appendChild(nameInput);
 
-        nameInput.value =
-        sessionStorage.getItem('name');
+    const classInput =
+    document.createElement('input');
 
-        form.appendChild(nameInput);
+    classInput.type = 'hidden';
+    classInput.name = 'student_class';
+    classInput.value =
+    sessionStorage.getItem('student_class');
 
-        const classInput =
-        document.createElement('input');
+    form.appendChild(classInput);
 
-        classInput.type = 'hidden';
+    const genderInput =
+    document.createElement('input');
 
-        classInput.name = 'student_class';
+    genderInput.type = 'hidden';
+    genderInput.name = 'gender';
+    genderInput.value =
+    sessionStorage.getItem('gender');
 
-        classInput.value =
-        sessionStorage.getItem('student_class');
+    form.appendChild(genderInput);
 
-        form.appendChild(classInput);
+    submitQuiz();
 
-        const genderInput =
-        document.createElement('input');
+});
 
-        genderInput.type = 'hidden';
+let resultChart = null;
 
-        genderInput.name = 'gender';
-
-        genderInput.value =
-        sessionStorage.getItem('gender');
-
-        form.appendChild(genderInput);
-
-        submitQuiz();
-
-    }
-
-}
-
-async function submitQuiz() {
+async function submitQuiz(){
 
     const answers = {};
 
-    slides.forEach(slide => {
-
-        const input =
-        slide.querySelector('input');
+    document
+    .querySelectorAll('input[type="hidden"]')
+    .forEach(input => {
 
         answers[input.name] =
         input.value;
 
     });
 
-    answers['name'] =
+    answers.name =
     sessionStorage.getItem('name');
 
-    answers['student_class'] =
-    sessionStorage.getItem(
-        'student_class'
-    );
+    answers.student_class =
+    sessionStorage.getItem('student_class');
 
-    answers['gender'] =
+    answers.gender =
     sessionStorage.getItem('gender');
 
-    const response = await fetch(
-        '/submit_quiz',
-        {
+    const response =
+    await fetch('/submit_quiz',{
 
-            method: 'POST',
+        method:'POST',
 
-            headers: {
+        headers:{
+            'Content-Type':'application/json'
+        },
 
-                'Content-Type':
-                'application/json'
+        body:JSON.stringify(answers)
 
-            },
-
-            body: JSON.stringify(answers)
-
-        }
-    );
+    });
 
     const data =
     await response.json();
 
+    console.log(data);
+    
     showResult(data);
 
 }
 
-function showResult(data) {
+function showResult(data){
 
-    document
-    .getElementById('result-section')
-    .style.display = 'block';
+    document.getElementById(
+        'quiz-section'
+    ).style.display = 'none';
 
-    document
-    .getElementById('resultName')
-    .innerText = data.name;
+    document.getElementById(
+        'result-section'
+    ).style.display = 'block';
 
-    document
-    .getElementById('resultClass')
-    .innerText =
-    data.student_class;
+    document.getElementById(
+        'resultName'
+    ).innerText = data.name;
 
-    document
-    .getElementById('resultGender')
-    .innerText =
-    data.gender;
+    document.getElementById(
+        'resultClass'
+    ).innerText = data.student_class;
 
-    document
-    .getElementById('dominantResult')
-    .innerText =
-    data.dominant;
+    document.getElementById(
+        'resultGender'
+    ).innerText = data.gender;
 
-    const dominantCard =
-document.getElementById(
-    "dominantCard"
-);
+    const dominantMap = {
 
-if(data.dominant === "visual") {
+        visual : "Visual",
 
-    dominantCard.style.background =
-    "#dbeafe";
+        auditory : "Auditori",
 
-}
+        kinesthetic : "Kinestetik"
 
-else if(data.dominant === "auditory") {
+    };
 
-    dominantCard.style.background =
-    "#ffedd5";
+    document.getElementById(
+        'dominantResult'
+    ).innerText =
+    dominantMap[data.dominant];
 
-}
+    document.getElementById(
+        'resultExplanation'
+    ).innerHTML =
+    data.explanation.replace(/\n/g,"<br>");
 
-else {
+    document.getElementById(
+        'ruleTrace'
+    ).innerHTML = `
 
-    dominantCard.style.background =
-    "#dcfce7";
+    <div class="analysis-summary">
 
-}
+        <div class="analysis-row">
+            <strong>Visual</strong>
+            <span>${data.percentages.visual}%</span>
+        </div>
 
-document.getElementById(
-    "visualPercent"
-).innerText =
-data.percentages.visual + "%";
+        <div class="analysis-row">
+            <strong>Auditori</strong>
+            <span>${data.percentages.auditory}%</span>
+        </div>
 
-document.getElementById(
-    "auditoryPercent"
-).innerText =
-data.percentages.auditory + "%";
+        <div class="analysis-row">
+            <strong>Kinestetik</strong>
+            <span>${data.percentages.kinesthetic}%</span>
+        </div>
 
-document.getElementById(
-    "kinestheticPercent"
-).innerText =
-data.percentages.kinesthetic + "%";
-    // recommendations
+    </div>
 
-    renderRecommendations(
+    `;
 
-        'studentRecommendations',
-
-        data.recommendations.student
-
-    );
-
-    renderRecommendations(
-
-        'teacherRecommendations',
-
-        data.recommendations.teacher
-
-    );
-
-    renderRecommendations(
-
-        'parentRecommendations',
-
-        data.recommendations.parent
-
-    );
-
-    // chart
-
-    const ctx =
+    const resultCtx =
     document.getElementById(
         'resultChart'
     );
 
-    new Chart(ctx, {
+    if(window.resultChart){
 
-        type: 'pie',
+        window.resultChart.destroy();
+
+    }
+
+    window.resultChart = new Chart(resultCtx, {
+
+        type: 'doughnut',
 
         data: {
 
@@ -393,11 +602,11 @@ data.percentages.kinesthetic + "%";
 
                 backgroundColor: [
 
-                    "#7c9df5",
+                    '#5B84E5',
 
-                    "#fdba74",
+                    '#D6C8F4',
 
-                    "#6ee7b7"
+                    '#F3BF67'
 
                 ],
 
@@ -410,6 +619,10 @@ data.percentages.kinesthetic + "%";
         options: {
 
             responsive: true,
+
+            maintainAspectRatio: false,
+
+            cutout: '60%',
 
             plugins: {
 
@@ -425,33 +638,68 @@ data.percentages.kinesthetic + "%";
 
     });
 
-    // scroll
+    document.getElementById(
+        'studentRecommendations'
+    ).innerHTML =
+    '<ul>' +
+    data.recommendations.student
+    .map(item => `<li>${item}</li>`)
+    .join('') +
+    '</ul>';
 
-    document
-    .getElementById('result-section')
-    .scrollIntoView({
+    document.getElementById(
+        'teacherRecommendations'
+    ).innerHTML =
+    '<ul>' +
+    data.recommendations.teacher
+    .map(item => `<li>${item}</li>`)
+    .join('') +
+    '</ul>';
 
-        behavior: 'smooth'
+    document.getElementById(
+        'parentRecommendations'
+    ).innerHTML =
+    '<ul>' +
+    data.recommendations.parent
+    .map(item => `<li>${item}</li>`)
+    .join('') +
+    '</ul>';
 
+    document.getElementById(
+        'visualCount'
+    ).innerText =
+    data.visual_count + " / 30";
+
+    document.getElementById(
+        'auditoryCount'
+    ).innerText =
+    data.auditory_count + " / 30";
+
+    document.getElementById(
+        'kinestheticCount'
+    ).innerText =
+    data.kinesthetic_count + " / 30";
+
+    document.getElementById(
+        'visualBar'
+    ).style.width =
+    (data.visual_count / 30 * 100) + "%";
+
+    document.getElementById(
+        'auditoryBar'
+    ).style.width =
+    (data.auditory_count / 30 * 100) + "%";
+
+    document.getElementById(
+        'kinestheticBar'
+    ).style.width =
+    (data.kinesthetic_count / 30 * 100) + "%";
+
+    document.getElementById(
+        'result-section'
+    ).scrollIntoView({
+        behavior:'smooth'
     });
-
-}
-
-function renderRecommendations(id, items) {
-
-    let html = '<ul>';
-
-    items.forEach(item => {
-
-        html += `<li>${item}</li>`;
-
-    });
-
-    html += '</ul>';
-
-    document
-    .getElementById(id)
-    .innerHTML = html;
 
 }
 

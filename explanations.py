@@ -2,17 +2,6 @@ def generate_explanation(
     percentages
 ):
 
-    visual = percentages["visual"]
-
-    auditory = percentages["auditory"]
-
-    kinesthetic = percentages["kinesthetic"]
-
-    dominant = max(
-        percentages,
-        key=percentages.get
-    )
-
     sorted_scores = sorted(
 
         percentages.items(),
@@ -23,57 +12,126 @@ def generate_explanation(
 
     )
 
-    secondary = sorted_scores[1][0]
-    sorted_scores[1][0]
-
-    difference = (
-        sorted_scores[0][1]
-        -
-        sorted_scores[1][1]
-    )
+    primary = sorted_scores[0][0]
 
     primary_score = sorted_scores[0][1]
 
+    secondary = sorted_scores[1][0]
+
     secondary_score = sorted_scores[1][1]
 
-    # MULTIMODAL
+    tertiary = sorted_scores[2][0]
 
-        # BALANCED STYLE
+    tertiary_score = sorted_scores[2][1]
 
-    if difference <= 5:
+    def translate(style):
 
-        return f"""
+        if style == "visual":
+            return "Visual"
 
-        Anda memiliki keseimbangan
-        gaya belajar
-        {dominant} dan {secondary}.
+        elif style == "auditory":
+            return "Auditori"
 
-        Anda mampu memahami materi
-        dengan baik melalui lebih
-        dari satu pendekatan belajar.
+        return "Kinestetik"
 
-        Kombinasi ini menunjukkan
-        fleksibilitas belajar yang baik
-        dan kemampuan adaptasi
-        terhadap berbagai metode pembelajaran.
+    primary_text = translate(primary)
+
+    secondary_text = translate(secondary)
+
+    tertiary_text = translate(tertiary)
+
+    explanation = f"""
+
+    Gaya belajar dominan Anda adalah
+    {primary_text} ({primary_score}%).
+
+    """
+
+    # =====================================
+    # PRIMARY DESCRIPTION
+    # =====================================
+
+    if primary == "visual":
+
+        explanation += """
+
+        Anda cenderung lebih mudah memahami
+        materi melalui gambar, video,
+        warna, diagram, dan visualisasi.
 
         """
 
-    # SECONDARY TENDENCY
+    elif primary == "auditory":
 
-    elif difference <= 15:
+        explanation += """
 
-        return f"""
-
-        Anda memiliki kecenderungan
-        gaya belajar {dominant}
-        dengan dukungan gaya belajar
-        {secondary} yang cukup kuat.
-
-        Anda cenderung lebih nyaman
-        belajar menggunakan metode
-        {dominant}, namun metode
-        {secondary} juga membantu
-        proses pemahaman materi Anda.
+        Anda cenderung lebih mudah memahami
+        materi melalui penjelasan verbal,
+        diskusi, dan aktivitas mendengarkan.
 
         """
+
+    else:
+
+        explanation += """
+
+        Anda cenderung lebih mudah memahami
+        materi melalui praktik langsung,
+        aktivitas, dan pengalaman nyata.
+
+        """
+
+    # =====================================
+    # SECONDARY STYLE
+    # =====================================
+
+    explanation += f"""
+
+    Gaya belajar kedua Anda adalah
+    {secondary_text} ({secondary_score}%).
+
+    """
+
+    if secondary == "visual":
+
+        explanation += """
+
+        Hal ini menunjukkan bahwa pendekatan
+        visual juga membantu memperkuat
+        pemahaman materi Anda.
+
+        """
+
+    elif secondary == "auditory":
+
+        explanation += """
+
+        Hal ini menunjukkan bahwa penjelasan verbal
+        dan diskusi juga membantu proses belajar Anda.
+
+        """
+
+    else:
+
+        explanation += """
+
+        Hal ini menunjukkan bahwa praktik langsung
+        dan aktivitas juga membantu memperkuat
+        pemahaman Anda.
+
+        """
+
+    # =====================================
+    # TERTIARY STYLE
+    # =====================================
+
+    explanation += f"""
+
+    Sementara itu, gaya belajar
+    {tertiary_text} ({tertiary_score}%)
+    tetap berperan sebagai pendukung
+    dalam proses belajar Anda.
+
+    """
+
+    return explanation
