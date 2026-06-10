@@ -101,104 +101,53 @@ def backward_chaining(
         "kinesthetic"
     ]
 
-    # =====================================
-    # GOAL : VISUAL
-    # =====================================
+    goals = {
 
-    if (
-        visual >= auditory
-        and
-        visual >= kinesthetic
-    ):
+        "visual": visual,
 
-        dominant = "visual"
+        "auditory": auditory,
 
-        rule_trace = f"""
+        "kinesthetic": kinesthetic
 
-GOAL:
-Visual Dominan
+    }
 
-RULE:
-Visual >= Auditori
-AND
-Visual >= Kinestetik
+    dominant = max(
 
-FAKTA:
-Visual      = {visual}
-Auditori    = {auditory}
-Kinestetik  = {kinesthetic}
+        goals,
 
-HASIL:
-Rule terpenuhi
+        key=goals.get
 
-KESIMPULAN:
-Visual merupakan gaya belajar dominan.
+    )
 
-"""
+    explanation = f"""
 
-    # =====================================
-    # GOAL : AUDITORY
-    # =====================================
+Sistem memulai proses inferensi
+dari tiga hipotesis gaya belajar:
 
-    elif (
-        auditory >= visual
-        and
-        auditory >= kinesthetic
-    ):
+1. Visual
+2. Auditori
+3. Kinestetik
 
-        dominant = "auditory"
+Fakta yang diperoleh dari hasil
+jawaban pengguna adalah:
 
-        rule_trace = f"""
+Visual      : {visual} jawaban
 
-GOAL:
-Auditori Dominan
+Auditori    : {auditory} jawaban
 
-RULE:
-Auditori >= Visual
-AND
-Auditori >= Kinestetik
+Kinestetik  : {kinesthetic} jawaban
 
-FAKTA:
-Visual      = {visual}
-Auditori    = {auditory}
-Kinestetik  = {kinesthetic}
+Sistem kemudian membandingkan
+jumlah fakta yang mendukung
+masing-masing hipotesis.
 
-HASIL:
-Rule terpenuhi
+Hipotesis dengan jumlah fakta
+terbanyak diterima sebagai
+kesimpulan akhir.
 
-KESIMPULAN:
-Auditori merupakan gaya belajar dominan.
-
-"""
-
-    # =====================================
-    # GOAL : KINESTHETIC
-    # =====================================
-
-    else:
-
-        dominant = "kinesthetic"
-
-        rule_trace = f"""
-
-GOAL:
-Kinestetik Dominan
-
-RULE:
-Kinestetik >= Visual
-AND
-Kinestetik >= Auditori
-
-FAKTA:
-Visual      = {visual}
-Auditori    = {auditory}
-Kinestetik  = {kinesthetic}
-
-HASIL:
-Rule terpenuhi
-
-KESIMPULAN:
-Kinestetik merupakan gaya belajar dominan.
+Hasil inferensi menunjukkan bahwa
+gaya belajar {dominant.capitalize()}
+memiliki fakta pendukung paling banyak.
 
 """
 
@@ -216,6 +165,6 @@ Kinestetik merupakan gaya belajar dominan.
         kinesthetic,
 
         "rule_trace":
-        rule_trace
+        explanation
 
     }
