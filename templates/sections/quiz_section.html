@@ -12,6 +12,44 @@
         min-height:auto;
     "
 >
+<div class="row g-4 align-items-start">
+
+<!-- Kolom Kiri: Timer -->
+<div class="col-lg-3 col-md-3">
+    <div
+        class="analytics-card text-center hover-card"
+        style="
+            background:white;
+            border-radius:20px;
+            padding:20px;
+            position:sticky;
+            top:80px;
+        "
+    >
+        <div style="font-size:2rem;">⏱️</div>
+        <h6 class="text-muted mt-1 mb-0">Waktu</h6>
+        <h2
+            id="quizTimer"
+            class="fw-bold mb-0"
+            style="color:#23468F; font-size:2rem;"
+        >
+            00:00
+        </h2>
+        <small class="text-muted">menit</small>
+        <hr>
+        <h6 class="text-muted mb-0">Soal</h6>
+        <h3
+            id="timerQuestionNum"
+            class="fw-bold mb-0"
+            style="color:#FF7444;"
+        >
+            1 / 30
+        </h3>
+    </div>
+</div>
+
+<!-- Kolom Kanan: Pertanyaan -->
+<div class="col-lg-9 col-md-9">
 
     <div
         style="
@@ -162,9 +200,11 @@
 
         </div>
 
-    </form>
+</form>
 
-</div>
+</div><!-- tutup col pertanyaan -->
+</div><!-- tutup row -->
+</div><!-- tutup wrapper -->
 
 <style>
 
@@ -273,10 +313,15 @@ function updateProgress(){
     const progress =
     ((current + 1) / slides.length) * 100;
 
-    document
-    .getElementById('progressBar')
-    .style.width =
-    progress + '%';
+    const progressEl =
+    document.getElementById('progressBar');
+
+    if(progressEl){
+
+        progressEl.style.width =
+        progress + '%';
+
+    }
 
     document
     .querySelectorAll('.current-question')
@@ -285,6 +330,20 @@ function updateProgress(){
         el.innerText = current + 1;
 
     });
+
+    const numEl =
+    document.getElementById(
+        'timerQuestionNum'
+    );
+
+    if(numEl){
+
+        numEl.innerText =
+        (current + 1) +
+        ' / ' +
+        slides.length;
+
+    }
 
 }
 
@@ -306,22 +365,24 @@ function updateButtons(){
 
     }
 
-    const lastAnswer =
-    document.getElementById(
-        'answer' + slides.length
+if(current === slides.length - 1){
+
+    const selectedButton =
+    slides[current].querySelector(
+        '.figma-answer.selected'
     );
 
-    if(current === slides.length - 1){
+    resultBtn.style.display =
+        selectedButton
+        ? 'block'
+        : 'none';
 
-        resultBtn.style.display =
-        'block';
+}else{
 
-    }else{
+    resultBtn.style.display =
+    'none';
 
-        resultBtn.style.display =
-        'none';
-
-    }
+}
 
 }
 
@@ -362,6 +423,14 @@ document
             if(current === slides.length - 1){
 
                 this.classList.add('selected');
+
+                document.getElementById(
+                    'answer' + questionId
+                ).value = value;
+
+                document.getElementById(
+                    'resultBtn'
+                ).style.display = 'block';
 
                 updateButtons();
 
@@ -495,6 +564,12 @@ async function submitQuiz(){
 }
 
 function showResult(data){
+    console.log("FULL DATA:", data);
+
+    console.log(
+        "RECOMMENDATIONS:",
+        data.recommendations
+    );
 
     document.getElementById(
         'quiz-section'
@@ -566,7 +641,10 @@ function showResult(data){
         'resultChart'
     );
 
-    if(window.resultChart){
+    if(
+        window.resultChart &&
+        typeof window.resultChart.destroy === 'function'
+    ){
 
         window.resultChart.destroy();
 
@@ -702,5 +780,15 @@ function showResult(data){
     });
 
 }
+
+// TIMER
+let timerSeconds = 0;
+const timerEl = document.getElementById('quizTimer');
+setInterval(() => {
+    timerSeconds++;
+    const m = String(Math.floor(timerSeconds/60)).padStart(2,'0');
+    const s = String(timerSeconds%60).padStart(2,'0');
+    if(timerEl) timerEl.innerText = m+':'+s;
+}, 1000);
 
 </script>

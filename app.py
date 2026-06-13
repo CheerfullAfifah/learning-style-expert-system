@@ -7,6 +7,8 @@ from flask import (
     jsonify
 )
 
+from dotenv import load_dotenv
+
 from questions import questions
 from rules import (
     calculate_result,
@@ -22,11 +24,17 @@ from explanations import generate_explanation
 
 import os
 
+load_dotenv()
 
 app = Flask(__name__)
 
 app.secret_key = 'learnstyle-secret-key'
 
+print("DB_HOST =", os.getenv("DB_HOST"))
+print("DB_NAME =", os.getenv("DB_NAME"))
+print("DB_USER =", os.getenv("DB_USER"))
+print("DB_PASSWORD =", os.getenv("DB_PASSWORD"))
+print("DB_PORT =", os.getenv("DB_PORT"))
 
 # CONFIG DATABASE POSTGRESQL
 app.config['SQLALCHEMY_DATABASE_URI'] = (

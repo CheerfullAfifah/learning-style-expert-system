@@ -135,3 +135,56 @@ def generate_explanation(
     """
 
     return explanation
+
+
+def generate_analysis_extra(percentages):
+
+    sorted_scores = sorted(
+        percentages.items(),
+        key=lambda x: x[1],
+        reverse=True
+    )
+
+    secondary = sorted_scores[1][0]
+    tertiary = sorted_scores[2][0]
+
+    secondary_score = sorted_scores[1][1]
+    tertiary_score = sorted_scores[2][1]
+
+    def translate(style):
+        if style == "visual":
+            return "Visual"
+        elif style == "auditory":
+            return "Auditori"
+        return "Kinestetik"
+
+    secondary_text = translate(secondary)
+    tertiary_text = translate(tertiary)
+
+    text = ""
+
+    if secondary == "visual":
+        text += (
+            "Hal ini menunjukkan bahwa pendekatan visual "
+            "juga membantu memperkuat pemahaman materi Anda."
+        )
+
+    elif secondary == "auditory":
+        text += (
+            "Hal ini menunjukkan bahwa penjelasan verbal "
+            "dan diskusi juga membantu proses belajar Anda."
+        )
+
+    else:
+        text += (
+            "Hal ini menunjukkan bahwa praktik langsung "
+            "dan aktivitas juga membantu memperkuat pemahaman Anda."
+        )
+
+    text += (
+        f"\n\nSementara itu, gaya belajar "
+        f"{tertiary_text} ({tertiary_score}%) "
+        f"tetap berperan sebagai pendukung dalam proses belajar Anda."
+    )
+
+    return text

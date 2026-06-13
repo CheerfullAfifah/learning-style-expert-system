@@ -86,7 +86,7 @@
 
             backdrop-filter: blur(12px);
 
-            border-radius: 0 0 25px 25px;
+            border-radius: 0;
 
             padding-top: 8px;
 
@@ -860,6 +860,36 @@
         padding-top: 35px;
         padding-bottom: 35px;
     }
+}
+
+/* ========================
+   PAGE LOAD ZOOM ANIMATION
+======================== */
+@keyframes zoomInOut {
+    0%   { transform: scale(0.96); opacity: 0; }
+    60%  { transform: scale(1.01); opacity: 1; }
+    100% { transform: scale(1.00); opacity: 1; }
+}
+
+.analytics-card,
+.quiz-card,
+.hero-stat-card,
+.hero-mini-card {
+    animation: zoomInOut 0.2s ease forwards;
+}
+
+.analytics-card:nth-child(1) { animation-delay: 0.00s; }
+.analytics-card:nth-child(2) { animation-delay: 0.04s; }
+.analytics-card:nth-child(3) { animation-delay: 0.08s; }
+.analytics-card:nth-child(4) { animation-delay: 0.12s; }
+
+/* Tambahan hover untuk card gaya belajar di start_test */
+.rounded-4.h-100 {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.rounded-4.h-100:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 36px rgba(87,106,143,0.18) !important;
 }
     </style>
 
