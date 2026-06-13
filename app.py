@@ -1,4 +1,4 @@
-from flask import (
+from flask import ( # type: ignore[import]
     Flask,
     render_template,
     request,
@@ -7,7 +7,7 @@ from flask import (
     jsonify
 )
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore[import]
 
 from questions import questions
 from rules import (
