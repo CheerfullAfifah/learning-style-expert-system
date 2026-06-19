@@ -1,28 +1,12 @@
-def generate_explanation(
-    percentages
-):
+def generate_explanation(percentages):
 
     sorted_scores = sorted(
-
         percentages.items(),
-
         key=lambda x: x[1],
-
         reverse=True
-
     )
 
     primary = sorted_scores[0][0]
-
-    primary_score = sorted_scores[0][1]
-
-    secondary = sorted_scores[1][0]
-
-    secondary_score = sorted_scores[1][1]
-
-    tertiary = sorted_scores[2][0]
-
-    tertiary_score = sorted_scores[2][1]
 
     def translate(style):
 
@@ -34,107 +18,27 @@ def generate_explanation(
 
         return "Kinestetik"
 
-    primary_text = translate(primary)
-
-    secondary_text = translate(secondary)
-
-    tertiary_text = translate(tertiary)
-
-    explanation = f"""
-
-    Gaya belajar dominan Anda adalah
-    {primary_text} ({primary_score}%).
-
-    """
-
-    # =====================================
-    # PRIMARY DESCRIPTION
-    # =====================================
-
     if primary == "visual":
 
-        explanation += """
-
-        Anda cenderung lebih mudah memahami
-        materi melalui gambar, video,
-        warna, diagram, dan visualisasi.
-
-        """
+        return (
+            "Anda cenderung lebih mudah memahami materi "
+            "melalui gambar, video, warna, diagram, "
+            "dan visualisasi."
+        )
 
     elif primary == "auditory":
 
-        explanation += """
+        return (
+            "Anda cenderung lebih mudah memahami materi "
+            "melalui penjelasan verbal, diskusi, "
+            "dan aktivitas mendengarkan."
+        )
 
-        Anda cenderung lebih mudah memahami
-        materi melalui penjelasan verbal,
-        diskusi, dan aktivitas mendengarkan.
-
-        """
-
-    else:
-
-        explanation += """
-
-        Anda cenderung lebih mudah memahami
-        materi melalui praktik langsung,
-        aktivitas, dan pengalaman nyata.
-
-        """
-
-    # =====================================
-    # SECONDARY STYLE
-    # =====================================
-
-    explanation += f"""
-
-    Gaya belajar kedua Anda adalah
-    {secondary_text} ({secondary_score}%).
-
-    """
-
-    if secondary == "visual":
-
-        explanation += """
-
-        Hal ini menunjukkan bahwa pendekatan
-        visual juga membantu memperkuat
-        pemahaman materi Anda.
-
-        """
-
-    elif secondary == "auditory":
-
-        explanation += """
-
-        Hal ini menunjukkan bahwa penjelasan verbal
-        dan diskusi juga membantu proses belajar Anda.
-
-        """
-
-    else:
-
-        explanation += """
-
-        Hal ini menunjukkan bahwa praktik langsung
-        dan aktivitas juga membantu memperkuat
-        pemahaman Anda.
-
-        """
-
-    # =====================================
-    # TERTIARY STYLE
-    # =====================================
-
-    explanation += f"""
-
-    Sementara itu, gaya belajar
-    {tertiary_text} ({tertiary_score}%)
-    tetap berperan sebagai pendukung
-    dalam proses belajar Anda.
-
-    """
-
-    return explanation
+    return (
+        "Anda cenderung lebih mudah memahami materi "
+        "melalui praktik langsung, aktivitas, "
+        "dan pengalaman nyata."
+    )
 
 
 def generate_analysis_extra(percentages):
@@ -145,46 +49,36 @@ def generate_analysis_extra(percentages):
         reverse=True
     )
 
-    secondary = sorted_scores[1][0]
-    tertiary = sorted_scores[2][0]
-
-    secondary_score = sorted_scores[1][1]
-    tertiary_score = sorted_scores[2][1]
+    primary = sorted_scores[0]
+    secondary = sorted_scores[1]
+    tertiary = sorted_scores[2]
 
     def translate(style):
+
         if style == "visual":
             return "Visual"
+
         elif style == "auditory":
             return "Auditori"
+
         return "Kinestetik"
 
-    secondary_text = translate(secondary)
-    tertiary_text = translate(tertiary)
+    primary_name = translate(primary[0])
+    secondary_name = translate(secondary[0])
+    tertiary_name = translate(tertiary[0])
 
-    text = ""
+    return (
+        f"Berdasarkan hasil kuis, gaya belajar dominan kamu adalah "
+        f"{primary_name} ({primary[1]}%). "
+        f"Hal ini menunjukkan bahwa metode belajar yang paling efektif "
+        f"adalah yang menyesuaikan karakteristik {primary_name.lower()}.\n\n"
 
-    if secondary == "visual":
-        text += (
-            "Hal ini menunjukkan bahwa pendekatan visual "
-            "juga membantu memperkuat pemahaman materi Anda."
-        )
+        f"Gaya belajar kedua adalah "
+        f"{secondary_name} ({secondary[1]}%), "
+        f"yang juga berperan dalam membantu proses pemahaman materi.\n\n"
 
-    elif secondary == "auditory":
-        text += (
-            "Hal ini menunjukkan bahwa penjelasan verbal "
-            "dan diskusi juga membantu proses belajar Anda."
-        )
-
-    else:
-        text += (
-            "Hal ini menunjukkan bahwa praktik langsung "
-            "dan aktivitas juga membantu memperkuat pemahaman Anda."
-        )
-
-    text += (
-        f"\n\nSementara itu, gaya belajar "
-        f"{tertiary_text} ({tertiary_score}%) "
-        f"tetap berperan sebagai pendukung dalam proses belajar Anda."
+        f"Sementara itu, gaya belajar "
+        f"{tertiary_name} ({tertiary[1]}%) "
+        f"tetap menjadi pendukung sehingga kombinasi ketiga gaya belajar "
+        f"tetap dapat digunakan secara seimbang sesuai situasi belajar."
     )
-
-    return text
