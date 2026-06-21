@@ -135,8 +135,41 @@ recommendations = {
             "Gunakan permainan edukatif atau aktivitas praktik sederhana untuk membantu proses belajar.",
 
         ]
+    },
 
-    }
+    "campuran": {
+
+        "student": [
+
+            "Gunakan kombinasi gambar, diskusi, dan praktik langsung saat belajar.",
+
+            "Cobalah berbagai metode belajar untuk menemukan cara yang paling efektif.",
+
+            "Manfaatkan media visual, audio, dan aktivitas praktik secara seimbang."
+
+        ],
+
+        "teacher": [
+
+            "Gunakan pendekatan pembelajaran yang bervariasi.",
+
+            "Kombinasikan presentasi visual, diskusi kelas, dan kegiatan praktik.",
+
+            "Berikan variasi metode penyampaian materi."
+
+        ],
+
+        "parent": [
+
+            "Dukung anak dengan berbagai cara belajar di rumah.",
+
+            "Sediakan media belajar visual, audio, dan praktik.",
+
+            "Amati metode belajar yang paling efektif bagi anak."
+
+        ]
+
+    },
 
 }
 
@@ -171,7 +204,10 @@ def get_recommendations(
         sorted_scores[1][1]
     )
 
-    base = recommendations[dominant]
+    base = recommendations.get(
+        dominant,
+        recommendations["visual"]
+    )
 
     student = base["student"][:]
 

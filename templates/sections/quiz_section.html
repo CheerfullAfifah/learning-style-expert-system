@@ -26,17 +26,6 @@
             top:80px;
         "
     >
-        <div style="font-size:2rem;">⏱️</div>
-        <h6 class="text-muted mt-1 mb-0">Waktu</h6>
-        <h2
-            id="quizTimer"
-            class="fw-bold mb-0"
-            style="color:#23468F; font-size:2rem;"
-        >
-            00:00
-        </h2>
-        <small class="text-muted">menit</small>
-        <hr>
         <h6 class="text-muted mb-0">Soal</h6>
         <h3
             id="timerQuestionNum"
@@ -147,7 +136,7 @@
                     type="button"
                     class="figma-answer"
                     data-question="{{ q.id }}"
-                    data-value="{{ option.type }}"
+                    data-value="{{ option.fact }}"
                 >
 
                     {{ option.text }}
@@ -313,10 +302,15 @@ function updateProgress(){
     const progress =
     ((current + 1) / slides.length) * 100;
 
-    document
-    .getElementById('progressBar')
-    .style.width =
-    progress + '%';
+    const progressEl =
+    document.getElementById('progressBar');
+
+    if(progressEl){
+
+        progressEl.style.width =
+        progress + '%';
+
+    }
 
     document
     .querySelectorAll('.current-question')
@@ -325,6 +319,20 @@ function updateProgress(){
         el.innerText = current + 1;
 
     });
+
+    const numEl =
+    document.getElementById(
+        'timerQuestionNum'
+    );
+
+    if(numEl){
+
+        numEl.innerText =
+        (current + 1) +
+        ' / ' +
+        slides.length;
+
+    }
 
 }
 
@@ -346,22 +354,24 @@ function updateButtons(){
 
     }
 
-    const lastAnswer =
-    document.getElementById(
-        'answer' + slides.length
+if(current === slides.length - 1){
+
+    const selectedButton =
+    slides[current].querySelector(
+        '.figma-answer.selected'
     );
 
-    if(current === slides.length - 1){
+    resultBtn.style.display =
+        selectedButton
+        ? 'block'
+        : 'none';
 
-        resultBtn.style.display =
-        'block';
+}else{
 
-    }else{
+    resultBtn.style.display =
+    'none';
 
-        resultBtn.style.display =
-        'none';
-
-    }
+}
 
 }
 
@@ -402,6 +412,14 @@ document
             if(current === slides.length - 1){
 
                 this.classList.add('selected');
+
+                document.getElementById(
+                    'answer' + questionId
+                ).value = value;
+
+                document.getElementById(
+                    'resultBtn'
+                ).style.display = 'block';
 
                 updateButtons();
 
@@ -535,6 +553,12 @@ async function submitQuiz(){
 }
 
 function showResult(data){
+    console.log("FULL DATA:", data);
+
+    console.log(
+        "RECOMMENDATIONS:",
+        data.recommendations
+    );
 
     document.getElementById(
         'quiz-section'
@@ -562,9 +586,72 @@ function showResult(data){
 
         auditory : "Auditori",
 
-        kinesthetic : "Kinestetik"
+        kinesthetic : "Kinestetik",
+
+        campuran : "Campuran"
 
     };
+
+    const dominantIcons = {
+
+        visual: `
+            <div style="
+                width:70px;
+                height:70px;
+                border-radius:50%;
+                background:white;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:36px;
+                box-shadow:0 4px 12px rgba(0,0,0,.08);
+            ">
+                👁️
+            </div>
+        `,
+
+        auditory: `
+            <div style="
+                width:70px;
+                height:70px;
+                border-radius:50%;
+                background:white;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:36px;
+                box-shadow:0 4px 12px rgba(0,0,0,.08);
+            ">
+                🎧
+            </div>
+        `,
+
+        kinesthetic: `
+            <div style="
+                width:70px;
+                height:70px;
+                border-radius:50%;
+                background:white;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:36px;
+                box-shadow:0 4px 12px rgba(0,0,0,.08);
+            ">
+                🏃
+            </div>
+        `
+    };
+
+    const dominantIconEl =
+        document.getElementById(
+            'dominantIcon'
+        );
+
+    if(dominantIconEl){
+        dominantIconEl.innerHTML =
+            dominantIcons[data.dominant];
+    }
 
     document.getElementById(
         'dominantResult'
@@ -575,6 +662,11 @@ function showResult(data){
         'resultExplanation'
     ).innerHTML =
     data.explanation.replace(/\n/g,"<br>");
+
+    document.getElementById(
+        'analysisExtra'
+    ).innerHTML =
+    data.analysis_extra.replace(/\n/g,'<br><br>');
 
     document.getElementById(
         'ruleTrace'
@@ -606,7 +698,10 @@ function showResult(data){
         'resultChart'
     );
 
-    if(window.resultChart){
+    if(
+        window.resultChart &&
+        typeof window.resultChart.destroy === 'function'
+    ){
 
         window.resultChart.destroy();
 
@@ -742,24 +837,4 @@ function showResult(data){
     });
 
 }
-
-// TIMER
-let timerSeconds = 0;
-const timerEl = document.getElementById('quizTimer');
-setInterval(() => {
-    timerSeconds++;
-    const m = String(Math.floor(timerSeconds/60)).padStart(2,'0');
-    const s = String(timerSeconds%60).padStart(2,'0');
-    if(timerEl) timerEl.innerText = m+':'+s;
-}, 1000);
-
-// Update nomor soal di timer card
-const origUpdateProgress = updateProgress;
-function updateProgress(){
-    origUpdateProgress();
-    const numEl = document.getElementById('timerQuestionNum');
-    if(numEl) numEl.innerText = (current+1) + ' / ' + slides.length;
-}
-updateProgress();
-
 </script>

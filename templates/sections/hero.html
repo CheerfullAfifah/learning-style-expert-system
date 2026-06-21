@@ -3,11 +3,19 @@
     class="hero-section position-relative"
 >
 
+<div class="hero-overlay"></div>
+
     <div class="hero-blob blob-1"></div>
 
     <div class="hero-blob blob-2"></div>
 
-    <div class="row align-items-center">
+    <div
+    class="row align-items-center"
+    style="
+        position:relative;
+        z-index:2;
+    "
+>
 
         <!-- LEFT -->
 
@@ -63,7 +71,7 @@
                         {{ total_students }}
                     </h2>
                     <p class="mb-0 text-muted">
-                        Siswa Telah Mencoba
+                        Siswa Mencoba
                     </p>
                 </div>
 
@@ -75,21 +83,28 @@
                         3
                     </h2>
                     <p class="mb-0 text-muted">
-                        Gaya Belajar
+                        Jenis Gaya Belajar
                     </p>
                 </div>
 
             </div>
 
-            <!-- MULAI TES — di bawah, rata tengah -->
-            <div class="mt-3 text-center">
+            <!-- MULAI TES -->
+            <div
+                class="d-flex justify-content-start mt-3"
+                style="max-width:280px;"
+            >
+
                 <a href="#start-test">
-                    <button class="primary-btn hero-btn">
+
+                    <button
+                        class="primary-btn hero-btn"
+                    >
+
                         Mulai Tes
                     </button>
                 </a>
             </div>
-
         </div>
 
         <!-- RIGHT -->

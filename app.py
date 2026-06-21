@@ -1,4 +1,5 @@
-from flask import (
+import explanations
+from flask import ( # type: ignore[import]
     Flask,
     render_template,
     request,
@@ -7,10 +8,15 @@ from flask import (
     jsonify
 )
 
+from dotenv import load_dotenv # type: ignore[import]
+
 from questions import questions
 from rules import (
-    calculate_result,
-    backward_chaining
+    calculate_result
+)
+
+from inference import (
+    forward_chaining
 )
 
 from models import db, Result
@@ -18,15 +24,24 @@ from recommendations import (
     recommendations,
     get_recommendations
 )
-from explanations import generate_explanation
+from explanations import (
+    generate_explanation,
+    generate_analysis_extra
+)
 
 import os
 
+load_dotenv()
 
 app = Flask(__name__)
 
 app.secret_key = 'learnstyle-secret-key'
 
+print("DB_HOST =", os.getenv("DB_HOST"))
+print("DB_NAME =", os.getenv("DB_NAME"))
+print("DB_USER =", os.getenv("DB_USER"))
+print("DB_PASSWORD =", os.getenv("DB_PASSWORD"))
+print("DB_PORT =", os.getenv("DB_PORT"))
 
 # CONFIG DATABASE POSTGRESQL
 app.config['SQLALCHEMY_DATABASE_URI'] = (
@@ -81,10 +96,25 @@ def index():
 
     }
 
-    most_dominant = max(
-        dominant_data,
-        key=dominant_data.get
-    )
+    if total_students == 0:
+
+        most_dominant = "belum ada data"
+
+    else:
+
+        if total_students == 0:
+
+            most_dominant = "belum ada data"
+
+        else:
+
+            most_dominant = max(
+
+                dominant_data,
+
+                key=dominant_data.get
+
+            )
 
     insight_text = f"""
     Mayoritas siswa memiliki
@@ -133,20 +163,65 @@ def quiz():
 @app.route('/result', methods=['POST'])
 def result():
 
-    dominant, percentages, scores = calculate_result(
+    facts = calculate_result(
         questions,
         request.form
     )
 
-    bc_result = backward_chaining(
-        scores
+    fc_result = forward_chaining(
+        facts
     )
 
-    rule_trace = bc_result["rule_trace"]
+    rule_trace = fc_result["rule_trace"]
 
-    dominant = bc_result["goal"]
+    dominant = fc_result["goal"]
+
+    visual_count = fc_result["visual_count"]
+
+    auditory_count = fc_result["auditory_count"]
+
+    kinesthetic_count = fc_result["kinesthetic_count"]
+
+    total = (
+        visual_count +
+        auditory_count +
+        kinesthetic_count
+    )
+
+    if total == 0:
+
+        percentages = {
+            "visual": 0,
+            "auditory": 0,
+            "kinesthetic": 0
+        }
+
+    else:
+
+        percentages = {
+
+            "visual": round(
+                visual_count / total * 100,
+                2
+            ),
+
+            "auditory": round(
+                auditory_count / total * 100,
+                2
+            ),
+
+            "kinesthetic": round(
+                kinesthetic_count / total * 100,
+                2
+            )
+
+        }
 
     explanation = generate_explanation(
+        percentages
+    )
+
+    analysis_extra = generate_analysis_extra(
         percentages
     )
 
@@ -157,7 +232,6 @@ def result():
         )
     )
 
-    # SIMPAN KE DATABASE
     new_result = Result(
 
         name=session['name'],
@@ -188,49 +262,122 @@ def result():
 
         percentages=percentages,
 
-        recommendations=
-        recommendation_result,
+        recommendations=recommendation_result,
 
         explanation=explanation,
 
         name=session['name'],
 
-        student_class=
-        session['student_class'],
+        student_class=session['student_class'],
 
-        gender=session['gender']
+        gender=session['gender'],
+
+        rule_trace=rule_trace,
+
+        visual_count=visual_count,
+
+        auditory_count=auditory_count,
+
+        kinesthetic_count=kinesthetic_count,
+
+        analysis_extra=analysis_extra,
 
     )
 
 @app.route('/submit_quiz', methods=['POST'])
 def submit_quiz():
 
-    answers = request.json
+    answers = request.get_json()
+
+    if not answers:
+
+        return jsonify({
+            "error": "Data jawaban tidak ditemukan"
+        }), 400
 
     print("\n===== ANSWERS =====")
+
     print(answers)
+
     print("===================\n")
 
-    dominant, percentages, scores = calculate_result(
+    facts = calculate_result(
+
         questions,
+
         answers
+
     )
 
-    bc_result = backward_chaining(
-        scores
+    fc_result = forward_chaining(
+
+        facts
+
     )
 
-    print("\n===== BC RESULT =====")
-    print(bc_result)
+    print("\n===== FC RESULT =====")
+
+    print(fc_result)
+
     print("=====================\n")
 
-    rule_trace = bc_result["rule_trace"]
+    rule_trace = fc_result["rule_trace"]
 
-    dominant = bc_result["goal"]
+    dominant = fc_result["goal"]
+
+    visual_count = fc_result["visual_count"]
+
+    auditory_count = fc_result["auditory_count"]
+
+    kinesthetic_count = fc_result["kinesthetic_count"]
+
+    total = (
+        visual_count +
+        auditory_count +
+        kinesthetic_count
+    )
+
+    if total == 0:
+
+        percentages = {
+
+            "visual": 0,
+
+            "auditory": 0,
+
+            "kinesthetic": 0
+
+        }
+
+    else:
+
+        percentages = {
+
+            "visual": round(
+                visual_count / total * 100,
+                2
+            ),
+
+            "auditory": round(
+                auditory_count / total * 100,
+                2
+            ),
+
+            "kinesthetic": round(
+                kinesthetic_count / total * 100,
+                2
+            )
+
+        }
 
     explanation = generate_explanation(
-    percentages
+        percentages
     )
+
+    analysis_extra = generate_analysis_extra(
+        percentages
+    )
+
     recommendation_result = (
         get_recommendations(
             dominant,
@@ -266,34 +413,28 @@ def submit_quiz():
 
         "percentages": percentages,
 
-        "recommendations":
-        recommendation_result,
+        "recommendations": recommendation_result,
 
         "name": answers['name'],
 
-        "student_class":
-        answers['student_class'],
+        "student_class": answers['student_class'],
 
-        "gender":
-        answers['gender'],
+        "gender": answers['gender'],
 
-        "explanation":
-        explanation,
+        "explanation": explanation,
 
-        "rule_trace":
-        rule_trace,
+        "rule_trace": rule_trace,
 
-        "visual_count":
-        bc_result["visual_count"],
+        "visual_count": visual_count,
 
-        "auditory_count":
-        bc_result["auditory_count"],
+        "auditory_count": auditory_count,
 
-        "kinesthetic_count":
-        bc_result["kinesthetic_count"],
+        "kinesthetic_count": kinesthetic_count,
+
+        "analysis_extra":
+            analysis_extra,
 
     })
-
 
 # DASHBOARD
 @app.route('/dashboard')
