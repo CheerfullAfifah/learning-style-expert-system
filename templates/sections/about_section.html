@@ -1,93 +1,312 @@
-<section id="about-section" class="section-spacing">
+<style>
+
+.about-card{
+    transition:all .35s ease;
+    cursor:pointer;
+}
+
+.about-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(87,106,143,.18);
+}
+
+</style>
+
+<section
+    id="about-section"
+    style="
+        padding-top:20px;
+        padding-bottom:10px;
+        transform:scale(.88);
+        transform-origin:top center;
+        margin-bottom:-120px;
+    "
+>
 
     <!-- HEADER -->
+
     <div class="text-center mb-4 reveal">
-        <div class="d-inline-block px-4 py-2 rounded-pill mb-3"
-            style="background:#eef1ff; color:#576A8F; font-weight:600;">
+
+        <div
+            class="d-inline-block px-4 py-2 rounded-pill mb-3"
+            style="
+                background:#EAF0FF;
+                color:#576A8F;
+                font-weight:600;
+                font-size:1rem;
+            "
+        >
             Tentang Aplikasi
         </div>
-        <h1 class="fw-bold" style="color:#576A8F;">
+
+        <h1
+            class="fw-bold mb-2"
+            style="
+                color:#F3B34C;
+                font-size:3rem;
+                line-height:1;
+            "
+        >
             LearnStyle Expert System
         </h1>
-        <p class="text-muted mx-auto mt-3"
-            style="max-width:800px; line-height:1.9;">
-            LearnStyle merupakan sistem pakar berbasis web yang dirancang
-            untuk membantu siswa mengenali gaya belajar dominan mereka
-            melalui assessment interaktif modern berbasis aturan (rule-based system).
+
+        <p
+            class="mx-auto"
+            style="
+                max-width:720px;
+                color:#7C87A7;
+                line-height:1.5;
+                font-size:.95rem;
+            "
+        >
+            LearnStyle merupakan sistem pakar berbasis web yang dirancang untuk membantu siswa
+            mengenali gaya belajar dominan mereka melalui assessment interaktif modern berbasis
+            aturan (rule-based system).
         </p>
+
     </div>
 
-    <!-- FEATURE GRID -->
-    <div class="row g-4 mb-4">
-        <div class="col-lg-4 reveal reveal-delay-1">
-            <div class="analytics-card hover-card h-100">
-                <div class="mb-3" style="width:64px;height:64px;border-radius:18px;background:#eef1ff;
-                    display:flex;align-items:center;justify-content:center;font-size:1.8rem;">
+    <!-- FITUR -->
+
+    <div class="row g-3 mb-3">
+
+        <div class="col-lg-4">
+
+            <div
+                class="about-card h-100"
+                style="
+                    background:#DDE6FF;
+                    border-radius:22px;
+                    padding:24px;
+                "
+            >
+
+                <div
+                    style="
+                        width:60px;
+                        height:60px;
+                        border-radius:12px;
+                        background:#D9C2F2;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        font-size:28px;
+                        margin-bottom:16px;
+                    "
+                >
                     🧠
                 </div>
-                <h4 class="fw-bold mb-2" style="color:#576A8F;">Sistem Pakar</h4>
-                <p class="text-muted mb-0" style="line-height:1.8;">
+
+                <h4
+                    class="fw-bold mb-2"
+                    style="
+                        color:#284C99;
+                        font-size:1.45rem;
+                    "
+                >
+                    Sistem Pakar
+                </h4>
+
+                <p
+                    class="mb-0"
+                    style="
+                        color:#6D7692;
+                        line-height:1.6;
+                        font-size:.95rem;
+                    "
+                >
                     Menggunakan metode rule-based inference untuk menentukan
-                    gaya belajar dominan siswa berdasarkan jawaban assessment.
+                    gaya belajar dominan dengan metode Forward Chaining
+                    dan Inference Engine berdasarkan jawaban assessment.
                 </p>
+
             </div>
+
         </div>
 
-        <div class="col-lg-4 reveal reveal-delay-2">
-            <div class="analytics-card hover-card h-100">
-                <div class="mb-3" style="width:64px;height:64px;border-radius:18px;background:#fff3ec;
-                    display:flex;align-items:center;justify-content:center;font-size:1.8rem;">
+        <div class="col-lg-4">
+
+            <div
+                class="about-card h-100"
+                style="
+                    background:#E8DDFB;
+                    border-radius:22px;
+                    padding:24px;
+                "
+            >
+
+                <div
+                    style="
+                        width:60px;
+                        height:60px;
+                        border-radius:12px;
+                        background:#BFD9C0;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        font-size:28px;
+                        margin-bottom:16px;
+                    "
+                >
                     📊
                 </div>
-                <h4 class="fw-bold mb-2" style="color:#576A8F;">Analytics Dashboard</h4>
-                <p class="text-muted mb-0" style="line-height:1.8;">
-                    Menampilkan visualisasi data, diagram, dan insight gaya
-                    belajar siswa untuk membantu guru BK dan sekolah.
+
+                <h4
+                    class="fw-bold mb-2"
+                    style="
+                        color:#284C99;
+                        font-size:1.45rem;
+                    "
+                >
+                    Analytics Dashboard
+                </h4>
+
+                <p
+                    class="mb-0"
+                    style="
+                        color:#6D7692;
+                        line-height:1.6;
+                        font-size:.95rem;
+                    "
+                >
+                    Menampilkan visualisasi data, diagram, dan insight gaya belajar siswa.
                 </p>
+
             </div>
+
         </div>
 
-        <div class="col-lg-4 reveal reveal-delay-3">
-            <div class="analytics-card hover-card h-100">
-                <div class="mb-3" style="width:64px;height:64px;border-radius:18px;background:#fff8de;
-                    display:flex;align-items:center;justify-content:center;font-size:1.8rem;">
-                    🎯
+        <div class="col-lg-4">
+
+            <div
+                class="about-card h-100"
+                style="
+                    background:#FFF3D6;
+                    border-radius:22px;
+                    padding:24px;
+                "
+            >
+
+                <div
+                    style="
+                        width:60px;
+                        height:60px;
+                        border-radius:12px;
+                        background:#E8CFF3;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        font-size:28px;
+                        margin-bottom:16px;
+                    "
+                >
+                    💡
                 </div>
-                <h4 class="fw-bold mb-2" style="color:#576A8F;">Personalized Recommendation</h4>
-                <p class="text-muted mb-0" style="line-height:1.8;">
-                    Memberikan rekomendasi belajar untuk siswa, guru, dan
-                    orang tua berdasarkan hasil assessment.
+
+                <h4
+                    class="fw-bold mb-2"
+                    style="
+                        color:#284C99;
+                        font-size:1.45rem;
+                    "
+                >
+                    Personalized Recommendation
+                </h4>
+
+                <p
+                    class="mb-0"
+                    style="
+                        color:#6D7692;
+                        line-height:1.6;
+                        font-size:.95rem;
+                    "
+                >
+                    Memberikan rekomendasi belajar untuk siswa, guru, dan orang tua
+                    berdasarkan hasil assessment.
                 </p>
+
             </div>
+
         </div>
+
     </div>
 
-    <!-- BOTTOM INFO -->
-    <div class="row g-4">
-        <div class="col-lg-6 reveal reveal-delay-1">
-            <div class="analytics-card hover-card h-100"
-                style="background:#576A8F; color:white;">
-                <h3 class="fw-bold mb-3">Tujuan Aplikasi</h3>
-                <p class="mb-0" style="line-height:1.9;">
+    <!-- BOTTOM CARD -->
+
+    <div class="row g-3">
+
+        <div class="col-lg-6">
+
+            <div
+                style="
+                    background:#5C6F9F;
+                    color:white;
+                    border-radius:22px;
+                    padding:24px;
+                    height:100%;
+                "
+            >
+
+                <h3
+                    class="fw-bold mb-3"
+                    style="font-size:1.7rem;"
+                >
+                    Tujuan Aplikasi
+                </h3>
+
+                <p
+                    class="mb-0"
+                    style="
+                        line-height:1.7;
+                        font-size:.95rem;
+                    "
+                >
                     Membantu siswa memahami cara belajar paling efektif,
                     membantu guru menentukan strategi pembelajaran,
                     serta membantu orang tua memahami kebutuhan belajar anak.
                 </p>
+
             </div>
+
         </div>
-        <div class="col-lg-6 reveal reveal-delay-2">
-            <div class="analytics-card hover-card h-100"
-                style="background:#FF7444; color:white;">
-                <h3 class="fw-bold mb-3">Teknologi yang Digunakan</h3>
-                <ul class="mb-0" style="line-height:2.1;">
+
+        <div class="col-lg-6">
+
+            <div
+                style="
+                    background:#F9A825;
+                    color:white;
+                    border-radius:22px;
+                    padding:24px;
+                    height:100%;
+                "
+            >
+
+                <h3
+                    class="fw-bold mb-3"
+                    style="font-size:1.7rem;"
+                >
+                    Teknologi Yang Digunakan
+                </h3>
+
+                <ul
+                    class="mb-0"
+                    style="
+                        line-height:1.8;
+                        font-size:.95rem;
+                    "
+                >
                     <li>Flask Framework</li>
                     <li>PostgreSQL Database</li>
                     <li>Docker Container</li>
                     <li>Chart.js Visualization</li>
                     <li>Bootstrap Responsive UI</li>
                 </ul>
+
             </div>
+
         </div>
+
     </div>
 
 </section>

@@ -48,7 +48,34 @@
         rel="stylesheet"
     >
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <style>
+
+        .learnstyle-logo{
+
+            font-family:'Plus Jakarta Sans',sans-serif;
+
+            font-size:2.4rem;
+
+            font-weight:800;
+
+            letter-spacing:-1.5px;
+
+            color:#576A8F;
+
+            margin-left:0;
+
+        }
+
+        .learnstyle-logo:hover{
+
+            color:#3158B8 !important;
+
+        }
 
         :root {
 
@@ -76,6 +103,20 @@
 
             overflow-x: hidden;
 
+        }
+
+        html,
+        body{
+            margin:0;
+            padding:0;
+            overflow-x:hidden;
+        }
+
+        #home{
+            width:100vw;
+            margin:0;
+            padding-left:0;
+            padding-right:0;
         }
 
         /* NAVBAR */
@@ -489,39 +530,61 @@
 ========================= */
 
 #home{
-    background:#F5F6FF;
+
+    transition:
+    background-image 1s ease;
+
+    background-image:
+    url('/static/img/slideshow1.jpeg');
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    position:relative;
+
+    overflow:hidden;
+
 }
 
-.hero-section{
+.hero-overlay{
 
-    min-height:auto;
+    position:absolute;
 
-    padding-top:40px;
+    inset:0;
 
-    padding-bottom:40px;
+    background:rgba(
+        255,
+        255,
+        255,
+        0.78
+    );
+
+    z-index:1;
 
 }
+
+    .hero-section{
+        min-height:85vh;
+        padding:60px 0;
+        width:100vw;
+        margin:0;
+    }
 
 .hero-left{
-
-    padding-left:60px;
-
+    padding-left:80px;
     padding-right:20px;
-
 }
 
 .hero-right{
-
     display:flex;
-
-    justify-content:flex-start;
-
+    justify-content:flex-end;
     align-items:flex-start;
-
-    padding-left:10px;
-
+    padding-left:0;
+    padding-right:0;
     padding-top:40px;
-
 }
 
 .hero-title{
@@ -588,7 +651,7 @@
 
     width:100%;
 
-    max-width:450px;
+    max-width:520px;
 
     border-radius:26px;
 
@@ -903,13 +966,14 @@
     class="navbar navbar-expand-lg navbar-custom sticky-top shadow-sm"
 >
 
-    <div class="container">
+    <div class="container-fluid px-4">
 
-        <a class="navbar-brand" href="#home">
-
-            LearnStyle
-
-        </a>
+        <a
+        class="navbar-brand learnstyle-logo"
+        href="#home"
+    >
+        LearnStyle Expert System+
+    </a>
 
         <button
             class="navbar-toggler"
@@ -979,12 +1043,8 @@
 
 <!-- CONTENT -->
 
-<div class="container-fluid px-lg-4 px-3">
-
     {% block content %}
     {% endblock %}
-
-</div>
 
 <!-- BOOTSTRAP -->
 
@@ -1256,6 +1316,56 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(el);
     });
 })();
+
+</script>
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        const slides = [
+
+            "/static/img/slideshow1.jpeg",
+
+            "/static/img/slideshow2.jpeg",
+
+            "/static/img/slideshow3.jpeg",
+
+            "/static/img/slideshow4.jpeg"
+
+        ];
+
+        let current = 0;
+
+        const hero =
+        document.getElementById(
+            "home"
+        );
+
+        if(!hero) return;
+
+        setInterval(() => {
+
+            current++;
+
+            if(
+                current >=
+                slides.length
+            ){
+
+                current = 0;
+
+            }
+
+            hero.style.backgroundImage =
+            `url('${slides[current]}')`;
+
+        }, 5000);
+
+    }
+);
 
 </script>
 </body>
